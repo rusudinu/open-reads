@@ -3,4 +3,5 @@ Open-Source GoodReads clone, with a cleaner UI, book search, friends feed that w
 
 ## Team Members
 Rusu Dinu-Ștefan (email: dinu_stefan.rusu@stud.fils.upb.ro)
+
 Mîș Emilia-Oana (email: emilia_oana.mis@stud.fils.upb.ro)
