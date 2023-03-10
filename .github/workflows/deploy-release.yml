@@ -1,5 +1,6 @@
-name: Deploy to Firebase Hosting on merge
+name: Deploy to release
 'on':
+  workflow_dispatch:
   push:
     branches:
       - release
