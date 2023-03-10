@@ -30,7 +30,7 @@ jobs:
       - name: Install Dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: |
-          yarn install --frozen-lockfile
+          cd frontend && yarn install --frozen-lockfile
       - name: Build
         run: |
           yarn build
