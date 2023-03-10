@@ -1,0 +1,23 @@
+.navbar-brand-image {
+  height: 2.5rem;
+  width: auto;
+  object-fit: contain;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.nav-custom {
+  background-color: #FDE2C4;
+}
+
+nav {
+  font-weight: bold;
+}
+
+.activeLink {
+   color: #f4a525;
+}
+
+.nav-offset {
+  height: 4rem;
+}

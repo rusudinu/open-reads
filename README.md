@@ -8,6 +8,9 @@ Rusu Dinu-Ștefan (email: dinu_stefan.rusu@stud.fils.upb.ro)
 
 Mîș Emilia-Oana (email: emilia_oana.mis@stud.fils.upb.ro)
 
+## URLs
+The FE is deployed here: https://openreads.codingshadows.com/, but will access the backend hosted on localhost.
+
 ### Stories
 
 1. As a user, I want to be able to search for books by title, author, genre, etc.
