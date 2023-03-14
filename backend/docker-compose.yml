@@ -24,7 +24,7 @@ services:
     ports:
       - "6379:6379"
   auth:
-    image: quay.io/keycloak/keycloak:17.0.0
+    image: quay.io/keycloak/keycloak:21.0.0
     container_name: openreads-keycloak
     ports:
       - "9001:8080"

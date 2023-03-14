@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/open-reads
+    username: root
+    password: topsecretpassword
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+      connection-url: jdbc:mysql://localhost:3306/open-reads
+
+open-reads:
+  redis:
+    endpoint: localhost:6379
+    cachePrefix: open-reads
+
+springdoc:
+  api-docs:
+    enabled: true
