@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/frontend/frontend.iml" filepath="$PROJECT_DIR$/frontend/frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/open-reads.iml" filepath="$PROJECT_DIR$/.idea/open-reads.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openreads.main.iml" filepath="$PROJECT_DIR$/.idea/modules/openreads.main.iml" />
     </modules>
   </component>
 </project>
