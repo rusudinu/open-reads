@@ -9,6 +9,7 @@ Rusu Dinu-Ștefan (email: dinu_stefan.rusu@stud.fils.upb.ro)
 Mîș Emilia-Oana (email: emilia_oana.mis@stud.fils.upb.ro)
 
 ## URLs
+
 The FE is deployed here: https://openreads.codingshadows.com/, but will access the backend hosted on localhost.
 
 ### Stories
@@ -33,20 +34,20 @@ The branch management and deployment process objectives are:
 There will be 4 type of branches:
 
 * master
-    * the master branch serves as a merging place for all feature branches
-    * all feature branches will be started from the master branch
+  * the master branch serves as a merging place for all feature branches
+  * all feature branches will be started from the master branch
 * release
-    * this branch is the only one from which PROD deployments are made
-    * commits are brought into the release branch in two ways:
-        * preferably, all changes from master are brought into the release branch for an upcoming release; this is done by merging the master branch into release
-        * when not all changes should be merged, the relevant commits should be cherry-picked into the release branch
+  * this branch is the only one from which PROD deployments are made
+  * commits are brought into the release branch in two ways:
+    * preferably, all changes from master are brought into the release branch for an upcoming release; this is done by merging the master branch into release
+    * when not all changes should be merged, the relevant commits should be cherry-picked into the release branch
 * feature
-    * all new features start from current master branch
-    * every story is developed in one or more feature branches, but never on master
-    * before merging, all commits should be squashed into one, to make cherry-picking easy, and the branch structure easier to read
+  * all new features start from current master branch
+  * every story is developed in one or more feature branches, but never on master
+  * before merging, all commits should be squashed into one, to make cherry-picking easy, and the branch structure easier to read
 * hotfix
-    * hotfix branches are created from the release branch
-    * hotfix branches are merged into the release branch and master branch
+  * hotfix branches are created from the release branch
+  * hotfix branches are merged into the release branch and master branch
 
 ### Branch naming
 
@@ -71,3 +72,7 @@ Each pull request should have a description that contains a brief description of
 Each pull request must be reviewed by at least one other team member in order for it to be merged. The reviewer should check that the code is clean, that the tests pass, and that the changes are consistent with the ticket description and fulfill the acceptance criteria.
 
 After the pull request is merged, the ticket should be closed.
+
+## Useful Links
+
+Local backend swagger [here](http://localhost:8080/swagger-ui/index.html).
