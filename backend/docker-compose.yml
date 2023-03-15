@@ -1,5 +1,15 @@
 version: '3'
 services:
+  open-reads-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile-backend
+    container_name: open-reads-backend
+    ports:
+      - "8086:8086"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    network_mode: "host"
   sql:
     image: mysql:8.0.32
     container_name: openreads-sql
