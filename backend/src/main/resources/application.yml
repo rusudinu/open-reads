@@ -8,6 +8,22 @@ spring:
     hibernate:
       ddl-auto: update
       connection-url: jdbc:mysql://localhost:3306/open-reads
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: open-reads
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+        provider:
+            keycloak:
+                issuer-uri: http://localhost:9001/realms/open-reads
+                user-name-attribute: preferred_username
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9001/realms/open-reads
 
 open-reads:
   redis:

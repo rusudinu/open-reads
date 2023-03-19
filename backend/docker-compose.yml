@@ -1,4 +1,5 @@
 version: '3'
+name: open-reads
 services:
   sql:
     image: mysql:8.0.32
