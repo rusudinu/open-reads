@@ -5,12 +5,14 @@ import com.openreads.openreads.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class UserProfileService {
     private final UserRepository userRepository;
 
-    public User getUserProfile(String id) {
+    public User getUserProfile(Long id) {
         return userRepository.findById(id).get();
     }
 

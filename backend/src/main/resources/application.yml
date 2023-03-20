@@ -4,11 +4,11 @@ spring:
     username: root
     password: topsecretpassword
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
       connection-url: jdbc:mysql://localhost:3306/open-reads
-      dialect: org.hibernate.dialect.MySQL5Dialect
+      dialect: org.hibernate.dialect.MySQLDialect
   security:
     oauth2:
       client:
