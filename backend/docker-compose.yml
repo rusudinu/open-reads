@@ -4,6 +4,8 @@ services:
   sql:
     image: mysql:8.0.32
     container_name: openreads-sql
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
     environment:
