@@ -4,10 +4,7 @@ package com.openreads.openreads.controller;
 import com.openreads.openreads.model.User;
 import com.openreads.openreads.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor

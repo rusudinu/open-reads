@@ -20,8 +20,8 @@ public class Book {
     private String name;
     private String author;
     private String description;
+    private String coverImageURL;
     private Genre genre;
     @OneToMany
     private List<Review> reviewList;
-
 }
