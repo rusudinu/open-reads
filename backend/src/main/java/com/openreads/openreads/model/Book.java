@@ -1,13 +1,12 @@
 package com.openreads.openreads.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -22,6 +21,7 @@ public class Book {
     private String author;
     private String description;
     private Genre genre;
-
+    @OneToMany
+    private List<Review> reviewList;
 
 }
