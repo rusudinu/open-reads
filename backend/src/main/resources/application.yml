@@ -4,10 +4,11 @@ spring:
     username: root
     password: topsecretpassword
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
       ddl-auto: update
       connection-url: jdbc:mysql://localhost:3306/open-reads
+      dialect: org.hibernate.dialect.MySQL5Dialect
   security:
     oauth2:
       client:
@@ -18,9 +19,9 @@ spring:
             scope:
               - openid
         provider:
-            keycloak:
-                issuer-uri: http://localhost:9001/realms/open-reads
-                user-name-attribute: preferred_username
+          keycloak:
+            issuer-uri: http://localhost:9001/realms/open-reads
+            user-name-attribute: preferred_username
       resourceserver:
         jwt:
           issuer-uri: http://localhost:9001/realms/open-reads
