@@ -1,8 +1,11 @@
 version: '3'
+name: open-reads
 services:
   sql:
     image: mysql:8.0.32
     container_name: openreads-sql
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
     environment:
@@ -24,11 +27,13 @@ services:
     ports:
       - "6379:6379"
   auth:
-    image: quay.io/keycloak/keycloak:21.0.0
+    image: quay.io/keycloak/keycloak:21.0.1
     container_name: openreads-keycloak
     ports:
       - "9001:8080"
-    command: start --auto-build --cache=local --http-enabled=true --hostname-strict=false --hostname-strict-https=false
+    volumes:
+      - ./open-reads-good-realm.json:/tmp/open-reads.json
+    command: start --cache=local --http-enabled=true --hostname-strict=false --hostname-strict-https=false -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/tmp -Dkeycloak.migration.strategy=OVERWRITE_EXISTING
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin

@@ -13,12 +13,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "open_reads_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
+    private String profileImageURL;
     private Long lastActionTimeStamp;
     @OneToMany
     private List<User> friendsList;
