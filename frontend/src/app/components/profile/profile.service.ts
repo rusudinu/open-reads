@@ -9,7 +9,7 @@ export class ProfileService {
     description: "Lorem Ipsum dolor sit amet",
     last_active: 1679150915,
     currently_reading: [{
-      ISBN: "1221323",
+      id: "1221323",
       title: "Barbie",
       author: "barbie",
       description: "i m a barbie girl",
