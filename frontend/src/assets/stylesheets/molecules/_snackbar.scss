@@ -1,0 +1,43 @@
+$csh-snackbar: csh-snackbar;
+
+.#{$csh-snackbar} {
+  --bg-color: black;
+  --txt-color: white;
+
+  &.success {
+    --bg-color: green;
+  }
+
+  &.warning {
+    --bg-color: yellow;
+    --txt-color: black;
+  }
+
+  &.error {
+    --bg-color: red;
+  }
+
+  &.mat-mdc-snack-bar-container {
+    .#{$csh-snackbar} {
+      &-message {
+        color: var(--txt-color);
+        margin: auto;
+        word-break: break-word;
+      }
+
+      &-left-icon {
+        color: var(--txt-color);
+        margin: auto 1rem;
+      }
+
+      &-right-icon {
+        color: var(--txt-color);
+        margin: auto 1.25rem;
+      }
+    }
+
+    padding: 0.75rem 0;
+    --mdc-snackbar-container-color: var(--bg-color);
+    --mdc-snackbar-supporting-text-color: var(--txt-color);
+  }
+}

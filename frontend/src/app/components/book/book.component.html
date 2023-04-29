@@ -1,0 +1,18 @@
+<div class="row" *ngIf="!loading">
+  <div class="col-auto">
+    <img [src]="book.coverImageURL" alt="book cover"/>
+    <div class="d-flex flex-column">
+      <div class="btn-group mt-1 mb-1" role="group">
+        <button type="button" class="btn btn-outline-primary" (click)="markAsWantToRead();">Want to Read</button>
+        <button type="button" class="btn btn-outline-primary" (click)="markAsCurrentlyReading();">Currently Reading</button>
+        <button type="button" class="btn btn-outline-primary" (click)="markAsRead();">Read</button>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <h3>{{book.title}}</h3>
+    <h5>{{book.author}}</h5>
+    <p>{{book.description}}</p>
+  </div>
+</div>
+<mat-spinner *ngIf="loading" ></mat-spinner>
