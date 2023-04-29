@@ -10,7 +10,7 @@ export class ProfileService {
     last_active: 1679150915,
     currently_reading: [{
       id: "1221323",
-      title: "Barbie",
+      name: "Barbie",
       author: "barbie",
       description: "i m a barbie girl",
       coverImageURL: "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/812kIrGJyEL.jpg",

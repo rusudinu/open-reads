@@ -20,7 +20,7 @@ export class BookComponent implements OnInit {
   ) {
     this.book = {
       id: "-1",
-      title: "",
+      name: "",
       author: "",
       description: "",
       coverImageURL: ""

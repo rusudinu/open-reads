@@ -1,4 +1,18 @@
 create schema `open-reads`;
+
+use `open-reads`;
+
+create table book
+(
+    id             bigint auto_increment
+        primary key,
+    author         varchar(255)   null,
+    cover_imageurl varchar(255)   null,
+    description    varchar(10000) null,
+    genre          smallint       null,
+    name           varchar(255)   null
+);
+
 INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, name) VALUES (1, 'Gayle Laakmann McDowell', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1391311964i/12544648.jpg', 'Now in the 5th edition, Cracking the Coding Interview gives you the interview preparation you need to get the top software developer jobs. This is a deeply technical book and focuses on the software engineering skills to ace your interview. The book is over 500 pages and includes 150 programming interview questions and answers, as well as other advice.', 0, 'Cracking the Coding Interview: 150 Programming Questions and Solutions');
 INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, name) VALUES (2, 'Andy Hunt', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1401432508i/4099.jpg', 'Straight from the programming trenches, The Pragmatic Programmer cuts through the increasing specialization and technicalities of modern software development to examine the core process--taking a requirement and producing working, maintainable code that delights its users. It covers topics ranging from personal responsibility and career development to architectural techniques for keeping your code flexible and easy to adapt and reuse. Read this book, and you\'ll learn how to Fight software rot; Avoid the trap of duplicating knowledge; Write flexible, dynamic, and adaptable code; Avoid programming by coincidence; Bullet-proof your code with contracts, assertions, and exceptions; Capture real requirements; Test ruthlessly and effectively; Delight your users; Build teams of pragmatic programmers; and Make your developments more precise with automation. Written as a series of self-contained sections and filled with entertaining anecdotes, thoughtful examples, and interesting analogies, The Pragmatic Programmer illustrates the best practices and major pitfalls of many different aspects of software development. Whether you"re a new coder, an experienced programmer, or a manager responsible for software projects, use these lessons daily, and you"ll quickly see improvements in personal productivity, accuracy, and job satisfaction. You\'ll learn skills and develop habits and attitudes that form the foundation for long-term success in your career. You"ll become a Pragmatic Programmer.', 0, 'The pragmatic programmer');
 INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, name) VALUES (3, 'Robert C. Martin Series', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1436202607i/3735293.jpg', 'Even bad code can function. But if code isn\'t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn\'t have to be that way.
