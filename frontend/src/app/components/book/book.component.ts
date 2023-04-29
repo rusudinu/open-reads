@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Book } from "../../../model/Book";
+import { SnackbarService } from "../../shared/snackbar/snackbar.service";
 import { BookService } from "./book.service";
 
 @Component({
@@ -14,6 +15,7 @@ export class BookComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private snackbar: SnackbarService,
     private readonly bookService: BookService
   ) {
     this.book = {
@@ -21,7 +23,7 @@ export class BookComponent implements OnInit {
       title: "",
       author: "",
       description: "",
-      photo_url: ""
+      coverImageURL: ""
     }
   }
 
@@ -32,5 +34,17 @@ export class BookComponent implements OnInit {
         this.loading = false;
       });
     });
+  }
+
+  markAsRead() {
+    this.snackbar.error("Mark as read not implemented yet.");
+  }
+
+  markAsCurrentlyReading() {
+    this.snackbar.success("Mark as currently reading not implemented yet.");
+  }
+
+  markAsWantToRead() {
+    this.snackbar.warning("Mark as want to read not implemented yet.");
   }
 }

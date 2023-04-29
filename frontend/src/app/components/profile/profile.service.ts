@@ -13,7 +13,7 @@ export class ProfileService {
       title: "Barbie",
       author: "barbie",
       description: "i m a barbie girl",
-      photo_url: "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/812kIrGJyEL.jpg",
+      coverImageURL: "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/812kIrGJyEL.jpg",
     }],
     photo_url: "https://my.upb.ro/img/UPB-Bucuresti-logo.png",
   }
