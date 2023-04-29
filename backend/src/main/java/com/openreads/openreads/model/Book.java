@@ -19,6 +19,7 @@ public class Book {
     private Long id;
     private String name;
     private String author;
+    @Column(length = 10000)
     private String description;
     private String coverImageURL;
     private Genre genre;
