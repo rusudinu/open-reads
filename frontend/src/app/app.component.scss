@@ -21,3 +21,9 @@ nav {
 .nav-offset {
   height: 4rem;
 }
+
+@media only screen and (max-width: 700px) {
+  .nav-offset {
+    height: 6rem;
+  }
+}
