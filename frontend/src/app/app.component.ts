@@ -2,9 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
+import { KeycloakProfile } from "keycloak-js";
 import { debounceTime } from "rxjs";
 import { environment } from "../environments/environment";
 import { Book } from "../model/Book";
+import { AuthService } from "./auth/service/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -19,15 +21,35 @@ export class AppComponent implements OnInit {
   searchedBookName: string = "";
   searchResults: Book[] = [];
 
+  public loggedIn: boolean = false;
+  public userProfile: KeycloakProfile = {};
+
   constructor(
     private router: Router,
     private httpClient: HttpClient,
+    private authService: AuthService,
   ) {
 
   }
 
   ngOnInit(): void {
     this.searchFilter();
+    this.getUser();
+  }
+
+  async getUser(){
+    this.loggedIn = await this.authService.isLoggedIn();
+    if (this.loggedIn) {
+      this.userProfile = await this.authService.loadUserProfile();
+    }
+  }
+
+  public login(): void {
+    this.authService.login();
+  }
+
+  public logout(): void {
+    this.authService.logout();
   }
 
   searchFilter(): void {

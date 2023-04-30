@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthModule } from "./auth/auth.module";
 import { BookService } from "./components/book/book.service";
 import { ComponentsModule } from "./components/components.module";
 import { SnackbarModule } from "./shared/snackbar/snackbar.module";
@@ -17,20 +18,22 @@ import { SnackbarModule } from "./shared/snackbar/snackbar.module";
   declarations: [
     AppComponent
   ],
-    imports: [
-        BrowserModule,
-        MatProgressSpinnerModule,
-        NgbModule,
-        HttpClientModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        SnackbarModule,
-        ComponentsModule,
-        ReactiveFormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    AuthModule,
+    MatProgressSpinnerModule,
+    NgbModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    SnackbarModule,
+    ComponentsModule,
+    ReactiveFormsModule,
+  ],
   providers: [ BookService, HttpClient ],
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+}
 
