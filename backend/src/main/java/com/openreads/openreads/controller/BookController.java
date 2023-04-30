@@ -5,6 +5,8 @@ import com.openreads.openreads.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/book")
@@ -14,6 +16,11 @@ public class BookController {
     @GetMapping("/{id}")
     public Book getBook(@PathVariable Long id) {
         return bookService.getBook(id);
+    }
+
+    @GetMapping("/search/{keyword}")
+    public List<Book> searchBook(@PathVariable String keyword) {
+        return bookService.searchBook(keyword);
     }
 
     @PostMapping
