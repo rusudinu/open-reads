@@ -1,5 +1,6 @@
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,17 +17,18 @@ import { SnackbarModule } from "./shared/snackbar/snackbar.module";
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    MatProgressSpinnerModule,
-    NgbModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    SnackbarModule,
-    ComponentsModule,
-  ],
+    imports: [
+        BrowserModule,
+        MatProgressSpinnerModule,
+        NgbModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        SnackbarModule,
+        ComponentsModule,
+        ReactiveFormsModule,
+    ],
   providers: [ BookService, HttpClient ],
   bootstrap: [ AppComponent ]
 })
