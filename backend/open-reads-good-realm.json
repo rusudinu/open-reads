@@ -681,7 +681,7 @@
       "attributes": {
         "oidc.ciba.grant.enabled": "false",
         "backchannel.logout.session.required": "true",
-        "post.logout.redirect.uris": "localhost:4200##openreads.codingshadows.com",
+        "post.logout.redirect.uris": "localhost:4200##openreads.codingshadows.com##*",
         "oauth2.device.authorization.grant.enabled": "false",
         "display.on.consent.screen": "false",
         "backchannel.logout.revoke.offline.tokens": "false"

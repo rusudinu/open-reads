@@ -17,15 +17,49 @@
       </ul>
     </div>
     <form>
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <input [formControl]="searchControl" type="text" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
     <div class="row" class="ms-2 profile">
-      <a class="nav-link" routerLink="/profile" routerLinkActive="activeLink">Demo user</a>
+      <a class="nav-link hide-name" routerLink="/profile" routerLinkActive="activeLink">
+        {{userProfile.firstName}}
+      </a>
+      <div class="simple-row cursor-pointer" *ngIf="!loggedIn" (click)="login()">
+        <span class="material-icons me-2">login</span>
+        <span>Login</span>
+      </div>
+      <div class="profile-dropdown" *ngIf="loggedIn">
+        <div class="simple-row">
+          <a class="nav-link me-4" routerLink="/profile" routerLinkActive="activeLink">
+            {{userProfile.firstName}}
+          </a>
+          <div class="simple-row" (click)="logout()">
+            <span class="material-icons me-2">logout</span>
+            <span>Logout</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
 
 <div class="nav-offset"></div>
+
+<div *ngIf=shouldShowSearchResults class="container">
+  <div *ngFor="let book of searchResults" class="card mb-3 cursor-pointer" (click)="onSearchResultClicked(book)">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{book.coverImageURL}}" class="img-fluid rounded-start" alt="Book cover">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{book.name}}</h5>
+          <p class="card-text">{{book.description | slice:0:150}}...</p>
+          <p class="card-text"><small class="text-muted">Author: {{book.author}}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container">
   <router-outlet></router-outlet>
