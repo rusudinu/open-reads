@@ -32,13 +32,13 @@
       </div>
       <div class="profile-dropdown" *ngIf="loggedIn">
         <div class="simple-row">
-          <a class="nav-link me-4" routerLink="/profile" routerLinkActive="activeLink">
-            {{userProfile.firstName}}
-          </a>
           <div class="simple-row" (click)="logout()">
             <span class="material-icons me-2">logout</span>
             <span>Logout</span>
           </div>
+          <a class="nav-link me-4" routerLink="/profile" routerLinkActive="activeLink">
+            {{userProfile.firstName}}
+          </a>
         </div>
       </div>
     </div>
