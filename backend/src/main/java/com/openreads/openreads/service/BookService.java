@@ -29,6 +29,9 @@ public class BookService {
     public void markAsReading(String username, Long bookId) {
         Book book = bookRepository.findById(bookId).get();
         User user = userProfileService.getUserProfile(username);
+        if (user.getRead().contains(book)) {
+            return;
+        }
         user.getCurrentlyReading().add(book);
         userProfileService.saveUserProfile(user);
     }
@@ -36,13 +39,20 @@ public class BookService {
     public void markAsRead(String username, Long bookId) {
         Book book = bookRepository.findById(bookId).get();
         User user = userProfileService.getUserProfile(username);
+        if (user.getRead().contains(book)) {
+            return;
+        }
         user.getRead().add(book);
+        user.getCurrentlyReading().remove(book);
         userProfileService.saveUserProfile(user);
     }
 
     public void markAsWantToRead(String username, Long bookId) {
         Book book = bookRepository.findById(bookId).get();
         User user = userProfileService.getUserProfile(username);
+        if (user.getWantToRead().contains(book)) {
+            return;
+        }
         user.getWantToRead().add(book);
         userProfileService.saveUserProfile(user);
     }
