@@ -26,8 +26,9 @@ create table `open-reads`.open_reads_user
 );
 
 
-INSERT INTO `open-reads`.open_reads_user (id, description, friends_list, last_action_time_stamp, name, profile_imageurl, username) VALUES ('4217092d-9133-41a5-83db-e52079a98391', null, 'demo,', 1682953699326, null, 'https://avatars.githubusercontent.com/u/35799602?v=4', 'rusu');
-INSERT INTO `open-reads`.open_reads_user (id, description, friends_list, last_action_time_stamp, name, profile_imageurl, username) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', null, 'rusu,', 1682953561867, null, 'https://avatars.githubusercontent.com/u/92299329?v=4', 'demo');
+INSERT INTO `open-reads`.open_reads_user (id, description, friends_list, last_action_time_stamp, name, profile_imageurl, username) VALUES ('4217092d-9133-41a5-83db-e52079a98391', 'This is the description for the demo user.', 'demo,', 1682953699326, null, 'https://avatars.githubusercontent.com/u/35799602?v=4', 'rusu');
+INSERT INTO `open-reads`.open_reads_user (id, description, friends_list, last_action_time_stamp, name, profile_imageurl, username) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 'This is the description for the admin user.', 'rusu,', 1682953561867, null, 'https://avatars.githubusercontent.com/u/92299329?v=4', 'demo');
+
 
 
 

@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -46,5 +47,12 @@ public class UserProfileController {
         Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
         userProfileService.addFriend((String) attributes.get("preferred_username"), username);
+    }
+
+    @GetMapping("/friends")
+    public List<User> getFriends() {
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        return userProfileService.getFriends((String) attributes.get("preferred_username"));
     }
 }
