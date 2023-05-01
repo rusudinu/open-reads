@@ -33,4 +33,11 @@ public class UserProfileController {
     public User saveUserProfile(@RequestBody User user) {
         return userProfileService.saveUserProfile(user);
     }
+
+    @PutMapping("/description")
+    public User updateUserDescription(@RequestBody String newDescription){
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        return userProfileService.updateUserDescription((String) attributes.get("preferred_username"), newDescription);
+    }
 }
