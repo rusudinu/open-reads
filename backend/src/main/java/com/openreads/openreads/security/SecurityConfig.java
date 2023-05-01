@@ -3,8 +3,10 @@ package com.openreads.openreads.security;
 import com.openreads.openreads.handler.KeycloakLogoutHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
@@ -14,6 +16,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -37,6 +40,8 @@ class SecurityConfig {
         http.authorizeHttpRequests()
                 .requestMatchers("/auth", "/register", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**")
                 .permitAll();
+        http.authorizeHttpRequests()
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll(); // allow pre-flight requests, e.g. for CORS
         http.authorizeHttpRequests()
                 .requestMatchers("/*")
                 .authenticated()

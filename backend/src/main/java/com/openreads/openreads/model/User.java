@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -16,19 +17,19 @@ import java.util.List;
 @Table(name = "open_reads_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String username;
     private String name;
     private String description;
     private String profileImageURL;
     private Long lastActionTimeStamp;
     @OneToMany
-    private List<User> friendsList;
+    private List<User> friendsList = new ArrayList<>();
     @OneToMany
-    private List<Book> currentlyReading;
+    private List<Book> currentlyReading = new ArrayList<>();
     @OneToMany
-    private List<Book> read;
+    private List<Book> read = new ArrayList<>();
     @OneToMany
-    private List<Book> wantToRead;
+    private List<Book> wantToRead = new ArrayList<>();
 
 }
