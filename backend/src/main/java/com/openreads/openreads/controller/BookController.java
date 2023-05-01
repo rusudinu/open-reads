@@ -3,9 +3,13 @@ package com.openreads.openreads.controller;
 import com.openreads.openreads.model.Book;
 import com.openreads.openreads.service.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,8 +32,24 @@ public class BookController {
         return bookService.saveBook(book);
     }
 
-//    @PutMapping("/mark-as-reading/{id}")
-//    public Book markAsReading(@PathVariable Long id, Authentication authentication) {
-//        return bookService.markAsReading(id);
-//    }
+    @PutMapping("/mark-as-reading/{bookId}")
+    public void markAsReading(@PathVariable Long bookId) {
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        bookService.markAsReading((String) attributes.get("preferred_username"), bookId);
+    }
+
+    @PutMapping("/mark-as-read/{bookId}")
+    public void markAsRead(@PathVariable Long bookId) {
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        bookService.markAsRead((String) attributes.get("preferred_username"), bookId);
+    }
+
+    @PutMapping("/mark-as-want-to-read/{bookId}")
+    public void markAsWantToRead(@PathVariable Long bookId) {
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        bookService.markAsWantToRead((String) attributes.get("preferred_username"), bookId);
+    }
 }

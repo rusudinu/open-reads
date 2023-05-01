@@ -24,13 +24,10 @@ public class UserProfileService {
             return userRepository.save(newUser);
         }
     }
+
     public User getUserProfile(String username) {
         Optional<User> user = userRepository.findByUsername(username);
-        if (user.isPresent()) {
-            return user.get();
-        } else {
-            return null;
-        }
+        return user.orElse(null);
     }
 
     public User saveUserProfile(User user) {
