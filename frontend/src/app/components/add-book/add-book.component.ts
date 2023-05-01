@@ -19,7 +19,7 @@ export class AddBookComponent {
       bookName: [ '', Validators.required ],
       authorName: [ '', Validators.required ],
       imageUrl: [ '', Validators.required ],
-      category: [ '', Validators.required ],
+      genre: [ '', Validators.required ],
       description: [ '', Validators.required ]
     });
   }
@@ -31,11 +31,12 @@ export class AddBookComponent {
       author: this.addBookForm.get('authorName')?.value,
       description: this.addBookForm.get('description')?.value,
       coverImageURL: this.addBookForm.get('imageUrl')?.value,
-      category: this.addBookForm.get('category')?.value
+      genre: this.addBookForm.get('genre')?.value
     }
   }
 
   addBook() {
+    console.log(this.bookFormToBook());
     this.http.post(environment.apiUrl + '/book', this.bookFormToBook(), {observe: 'response'}).subscribe((response) => {
       if (response.status === 200) {
         this.addBookForm.reset();

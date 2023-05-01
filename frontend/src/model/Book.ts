@@ -4,5 +4,5 @@ export interface Book {
   author: string;
   description: string;
   coverImageURL: string;
-  category:string;
+  genre:string;
 }

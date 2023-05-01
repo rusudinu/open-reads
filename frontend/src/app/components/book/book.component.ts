@@ -24,7 +24,7 @@ export class BookComponent implements OnInit {
       author: "",
       description: "",
       coverImageURL: "",
-      category:"NONFICTION"
+      genre:"NONFICTION"
     }
   }
 

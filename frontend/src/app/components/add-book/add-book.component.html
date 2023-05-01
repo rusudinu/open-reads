@@ -21,7 +21,7 @@
       </p>
       <p>
         <label for="category"></label>
-        <select id="category" name="category" formControlName="category">
+        <select id="category" name="category" formControlName="genre">
           <option value="NONFICTION">Nonfiction</option>
           <option value="ROMANCE">Romance</option>
           <option value="MYSTERY">Mystery</option>
@@ -33,7 +33,7 @@
   </div>
   <div class="row">
     <label for="description"></label>
-    <textarea id="description" name="description" rows="4" cols="45" placeholder="Enter a description"></textarea>
+    <textarea id="description" name="description" rows="4" cols="45" placeholder="Enter a description" formControlName="description"></textarea>
   </div>
   <div class="col mt-3">
    <button type="button" class="btn btn-outline-primary custom-btn" (click)="addBook()">Add book</button>
