@@ -24,7 +24,7 @@ The FE is deployed here: https://openreads.codingshadows.com/, but will access t
 ## Guidelines
 To authenticate just open [localhost:8080](localhost:8080).
 
-For OIDC_USER role just use user, user, for OIDC_ADMIN just use rusu, rusu.
+For OIDC_USER role just use demo, demo, for OIDC_ADMIN just use rusu, rusu.
 
 ### Branches
 
