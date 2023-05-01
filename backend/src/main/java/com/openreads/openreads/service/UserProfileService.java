@@ -5,6 +5,7 @@ import com.openreads.openreads.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -48,6 +49,20 @@ public class UserProfileService {
         }
     }
 
+    public List<User> getFriends(String username) {
+        List<User> friends = new ArrayList<>();
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isEmpty())
+            return new ArrayList<>();
+        for (String friendUsername : user.get().getFriends()) {
+            Optional<User> friend = userRepository.findByUsername(friendUsername);
+            if (friend.isEmpty())
+                continue;
+            friends.add(friend.get());
+        }
+        return friends;
+    }
+
     public void addFriend(String username, String friendUsername) {
         Optional<User> user = userRepository.findByUsername(username);
         Optional<User> friend = userRepository.findByUsername(friendUsername);
@@ -55,16 +70,12 @@ public class UserProfileService {
             return;
         }
         User userToUpdate = user.get();
-        List<User> friendsList = userToUpdate.getFriendsList();
-        if (!friendsList.contains(friend.get())) {
-            friendsList.add(friend.get());
-            userRepository.save(userToUpdate);
-        }
-        List<User> friendFriendsList = friend.get().getFriendsList();
-        if (!friendFriendsList.contains(userToUpdate)) {
-            friendFriendsList.add(userToUpdate);
-            userRepository.save(friend.get());
-        }
+        userToUpdate.addFriend(friend.get().getUsername());
+        userRepository.save(userToUpdate);
+
+        User friendToUpdate = friend.get();
+        friendToUpdate.addFriend(user.get().getUsername());
+        userRepository.save(friendToUpdate);
     }
 
 }

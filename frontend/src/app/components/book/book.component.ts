@@ -1,5 +1,7 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { environment } from "../../../environments/environment";
 import { Book } from "../../../model/Book";
 import { SnackbarService } from "../../shared/snackbar/snackbar.service";
 import { BookService } from "./book.service";
@@ -16,7 +18,8 @@ export class BookComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private snackbar: SnackbarService,
-    private readonly bookService: BookService
+    private readonly bookService: BookService,
+    private http: HttpClient,
   ) {
     this.book = {
       id: "-1",
@@ -24,7 +27,7 @@ export class BookComponent implements OnInit {
       author: "",
       description: "",
       coverImageURL: "",
-      genre:"NONFICTION"
+      genre: "NONFICTION"
     }
   }
 
@@ -38,14 +41,32 @@ export class BookComponent implements OnInit {
   }
 
   markAsRead() {
-    this.snackbar.error("Mark as read not implemented yet.");
+    this.http.put(environment.apiUrl + '/book/mark-as-read/' + this.book.id, {}, {observe: 'response'}).subscribe((response) => {
+      if (response.status === 200) {
+        this.snackbar.success('Book marked as read successfully');
+      } else {
+        this.snackbar.error('Error marking book as read');
+      }
+    });
   }
 
   markAsCurrentlyReading() {
-    this.snackbar.success("Mark as currently reading not implemented yet.");
+    this.http.put(environment.apiUrl + '/book/mark-as-reading/' + this.book.id, {}, {observe: 'response'}).subscribe((response) => {
+      if (response.status === 200) {
+        this.snackbar.success('Book marked as currently reading successfully');
+      } else {
+        this.snackbar.error('Error marking book as currently reading');
+      }
+    });
   }
 
   markAsWantToRead() {
-    this.snackbar.warning("Mark as want to read not implemented yet.");
+    this.http.put(environment.apiUrl + '/book/mark-as-want-to-read/' + this.book.id, {}, {observe: 'response'}).subscribe((response) => {
+      if (response.status === 200) {
+        this.snackbar.success('Book marked as want to read successfully');
+      } else {
+        this.snackbar.error('Error marking book as want to read');
+      }
+    });
   }
 }

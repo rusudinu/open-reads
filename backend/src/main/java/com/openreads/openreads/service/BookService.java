@@ -27,6 +27,7 @@ public class BookService {
     }
 
     public void markAsReading(String username, Long bookId) {
+        System.out.println(username);
         Book book = bookRepository.findById(bookId).get();
         User user = userProfileService.getUserProfile(username);
         if (user.getRead().contains(book)) {

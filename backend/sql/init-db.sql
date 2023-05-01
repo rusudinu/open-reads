@@ -18,6 +18,7 @@ create table `open-reads`.open_reads_user
     id                     varchar(255) not null
         primary key,
     description            varchar(255) null,
+    friends_list           varchar(255) null,
     last_action_time_stamp bigint       null,
     name                   varchar(255) null,
     profile_imageurl       varchar(255) null,
@@ -25,8 +26,10 @@ create table `open-reads`.open_reads_user
 );
 
 
-INSERT INTO `open-reads`.open_reads_user (id, description, last_action_time_stamp, name, profile_imageurl, username) VALUES ('0b2f8150-bf05-4481-806a-83a7f2e8a5ae', 'This is the description for the admin user.', 1682945693184, null, 'https://avatars.githubusercontent.com/u/35799602?v=4', 'rusu');
-INSERT INTO `open-reads`.open_reads_user (id, description, last_action_time_stamp, name, profile_imageurl, username) VALUES ('556c788c-c418-437d-830e-030adb607abf', 'This is the description for the demo user.', 1682945685130, null, 'https://avatars.githubusercontent.com/u/92299329?v=4', 'demo');
+INSERT INTO `open-reads`.open_reads_user (id, description, friends_list, last_action_time_stamp, name, profile_imageurl, username) VALUES ('4217092d-9133-41a5-83db-e52079a98391', null, 'demo,', 1682953699326, null, 'https://avatars.githubusercontent.com/u/35799602?v=4', 'rusu');
+INSERT INTO `open-reads`.open_reads_user (id, description, friends_list, last_action_time_stamp, name, profile_imageurl, username) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', null, 'rusu,', 1682953561867, null, 'https://avatars.githubusercontent.com/u/92299329?v=4', 'demo');
+
+
 
 INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, name) VALUES (1, 'Gayle Laakmann McDowell', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1391311964i/12544648.jpg', 'Now in the 5th edition, Cracking the Coding Interview gives you the interview preparation you need to get the top software developer jobs. This is a deeply technical book and focuses on the software engineering skills to ace your interview. The book is over 500 pages and includes 150 programming interview questions and answers, as well as other advice.', 0, 'Cracking the Coding Interview: 150 Programming Questions and Solutions');
 INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, name) VALUES (2, 'Andy Hunt', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1401432508i/4099.jpg', 'Straight from the programming trenches, The Pragmatic Programmer cuts through the increasing specialization and technicalities of modern software development to examine the core process--taking a requirement and producing working, maintainable code that delights its users. It covers topics ranging from personal responsibility and career development to architectural techniques for keeping your code flexible and easy to adapt and reuse. Read this book, and you\'ll learn how to Fight software rot; Avoid the trap of duplicating knowledge; Write flexible, dynamic, and adaptable code; Avoid programming by coincidence; Bullet-proof your code with contracts, assertions, and exceptions; Capture real requirements; Test ruthlessly and effectively; Delight your users; Build teams of pragmatic programmers; and Make your developments more precise with automation. Written as a series of self-contained sections and filled with entertaining anecdotes, thoughtful examples, and interesting analogies, The Pragmatic Programmer illustrates the best practices and major pitfalls of many different aspects of software development. Whether you"re a new coder, an experienced programmer, or a manager responsible for software projects, use these lessons daily, and you"ll quickly see improvements in personal productivity, accuracy, and job satisfaction. You\'ll learn skills and develop habits and attitudes that form the foundation for long-term success in your career. You"ll become a Pragmatic Programmer.', 0, 'The pragmatic programmer');
@@ -47,3 +50,46 @@ INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, n
 INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, name) VALUES (13, 'Michael C. Feathers', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348627451i/44919.jpg', 'Get more out of your legacy systems, more performance, functionality, reliability, and manageability.Is your code easy to change? Can you get nearly instantaneous feedback when you do change it? Do you understand it? If the answer to any of these questions is no, you have legacy code, and it is draining time and money away from your development efforts. In this book, Michael Feathers offers start-to-finish strategies for working more effectively with large, untested legacy code bases. This book draws on material Michael created for his renowned Object Mentor seminars, techniques Michael has used in mentoring to help hundreds of developers, technical managers, and testers bring their legacy systems under control. ', 0, 'Working Effectively with Legacy Code');
 INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, name) VALUES (14, 'Charles Petzold', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328830222i/44882.jpg', 'What do flashlights, the British invasion, black cats, and seesaws have to do with computers? In CODE, they show us the ingenious ways we manipulate language and invent new means of communicating with each other. And through CODE, we see how this ingenuity and our very human compulsion to communicate have driven the technological innovations of the past two centuries. Using everyday objects and familiar language systems such as Braille and Morse code, author Charles Petzold weaves an illuminating narrative for anyone who’s ever wondered about the secret inner life of computers and other smart machines.It’s a cleverly illustrated and eminently comprehensible story—and along the way, you’ll discover you’ve gained a real context for understanding today’s world of PCs, digital media, and the Internet. No matter what your level of technical savvy, CODE will charm you—and perhaps even awaken the technophile within.', 0, 'Code: The Hidden Language of Computer Hardware and Software');
 INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, name) VALUES (15, 'Joshua Bloch', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1513389229i/34927404.jpg', 'Since this Jolt-award winning classic was last updated in 2008 (shortly after Java 6 was released), Java has changed dramatically. The principal enhancement in Java 8 was the addition of functional programming constructs to Java\'s object-oriented roots. Java 7, 8, and 9 also introduced language features, such as the try-with-resources statement, the diamond operator for generic types, default and static methods in interfaces, the @SafeVarargs annotation, and modules. New library features include pervasive use of functional interfaces and streams, the java.time package for manipulating dates and times, and numerous minor enhancements such as convenience factory methods for collections. In this new edition of Effective Java, Bloch updates the work to take advantage of these new language and library features, and provides specific best practices for their use. Java\'s increased support for multiple paradigms increases the need for best-practices advice, and this book delivers. ', 0, 'Effective Java');
+
+create table `open-reads`.open_reads_user_currently_reading
+(
+    user_id              varchar(255) not null,
+    currently_reading_id bigint       not null,
+    constraint UK_4clivwtpt6ljgbwm1utfbsdqh
+        unique (currently_reading_id),
+    constraint FK9a9ytp0crmf55uba3o22d3ff1
+        foreign key (currently_reading_id) references `open-reads`.book (id),
+    constraint FKpuesm9svcgwp6g6ti7fnp0qhc
+        foreign key (user_id) references `open-reads`.open_reads_user (id)
+);
+
+create table `open-reads`.open_reads_user_read
+(
+    user_id varchar(255) not null,
+    read_id bigint       not null,
+    constraint UK_68o28o6t2gujfppmybm0nqgyy
+        unique (read_id),
+    constraint FK43vof6dh1hhkvb2wxvth0m5im
+        foreign key (read_id) references `open-reads`.book (id),
+    constraint FKgct5qnu3w87putce0ksht4k9h
+        foreign key (user_id) references `open-reads`.open_reads_user (id)
+);
+
+create table `open-reads`.open_reads_user_want_to_read
+(
+    user_id         varchar(255) not null,
+    want_to_read_id bigint       not null,
+    constraint UK_rs5n4vwrjm4dd3g15uncyftcr
+        unique (want_to_read_id),
+    constraint FKg6scpxlsw7b390e1hkc7ms7kw
+        foreign key (user_id) references `open-reads`.open_reads_user (id),
+    constraint FKjg7nald3kufg8jcyanrquxsre
+        foreign key (want_to_read_id) references `open-reads`.book (id)
+);
+
+INSERT INTO `open-reads`.open_reads_user_currently_reading (user_id, currently_reading_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 2);
+
+INSERT INTO `open-reads`.open_reads_user_read (user_id, read_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 1);
+INSERT INTO `open-reads`.open_reads_user_read (user_id, read_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 10);
+
+INSERT INTO `open-reads`.open_reads_user_want_to_read (user_id, want_to_read_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 8);
