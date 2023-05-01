@@ -36,7 +36,6 @@ export class AddBookComponent {
   }
 
   addBook() {
-    console.log(this.bookFormToBook());
     this.http.post(environment.apiUrl + '/book', this.bookFormToBook(), {observe: 'response'}).subscribe((response) => {
       if (response.status === 200) {
         this.addBookForm.reset();
