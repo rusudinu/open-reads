@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -24,5 +25,5 @@ public class Book {
     private String coverImageURL;
     private Genre genre;
     @OneToMany
-    private List<Review> reviewList;
+    private List<Review> reviewList = new ArrayList<>();
 }
