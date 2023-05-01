@@ -26,8 +26,9 @@ create table `open-reads`.open_reads_user
 );
 
 
-INSERT INTO `open-reads`.open_reads_user (id, description, friends_list, last_action_time_stamp, name, profile_imageurl, username) VALUES ('4217092d-9133-41a5-83db-e52079a98391', null, 'demo,', 1682953699326, null, null, 'rusu');
-INSERT INTO `open-reads`.open_reads_user (id, description, friends_list, last_action_time_stamp, name, profile_imageurl, username) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', null, 'rusu,', 1682953561867, null, null, 'demo');
+INSERT INTO `open-reads`.open_reads_user (id, description, friends_list, last_action_time_stamp, name, profile_imageurl, username) VALUES ('4217092d-9133-41a5-83db-e52079a98391', null, 'demo,', 1682953699326, null, 'https://avatars.githubusercontent.com/u/35799602?v=4', 'rusu');
+INSERT INTO `open-reads`.open_reads_user (id, description, friends_list, last_action_time_stamp, name, profile_imageurl, username) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', null, 'rusu,', 1682953561867, null, 'https://avatars.githubusercontent.com/u/92299329?v=4', 'demo');
+
 
 
 INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, name) VALUES (1, 'Gayle Laakmann McDowell', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1391311964i/12544648.jpg', 'Now in the 5th edition, Cracking the Coding Interview gives you the interview preparation you need to get the top software developer jobs. This is a deeply technical book and focuses on the software engineering skills to ace your interview. The book is over 500 pages and includes 150 programming interview questions and answers, as well as other advice.', 0, 'Cracking the Coding Interview: 150 Programming Questions and Solutions');
