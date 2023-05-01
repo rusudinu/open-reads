@@ -41,7 +41,9 @@ class SecurityConfig {
                 .requestMatchers("/auth", "/register", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**")
                 .permitAll();
         http.authorizeHttpRequests()
-                .requestMatchers( "/*")
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll(); // allow pre-flight requests, e.g. for CORS
+        http.authorizeHttpRequests()
+                .requestMatchers("/*")
                 .authenticated()
                 //.hasAuthority("OIDC_USER")
                 .anyRequest()
