@@ -1,6 +1,6 @@
 .profile-picture {
   border-radius: 50%;
-  max-width: 150px;
+  max-width: min(100%, 150px);
   max-height: 150px;
 }
 
