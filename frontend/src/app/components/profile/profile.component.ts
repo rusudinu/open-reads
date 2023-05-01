@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getFriends(): void {
-    this.http.get(environment.apiUrl + '/profile/friends').subscribe((friends: User[]) => {
+    this.http.get<User[]>(environment.apiUrl + '/profile/friends').subscribe((friends: User[]) => {
       this.friends = friends;
     });
   }
