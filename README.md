@@ -22,6 +22,9 @@ The FE is deployed here: https://openreads.codingshadows.com/, but will access t
 6. I would also like to see recommended books based on the topics that I am interested in.
 
 ## Guidelines
+To authenticate just open [localhost:8080](localhost:8080).
+
+For OIDC_USER role just use user, user, for OIDC_ADMIN just use rusu, rusu.
 
 ### Branches
 
@@ -76,3 +79,5 @@ After the pull request is merged, the ticket should be closed.
 ## Useful Links
 
 Local backend swagger [here](http://localhost:8080/swagger-ui/index.html).
+
+[Figma](https://www.figma.com/file/5n6GkvKFhgsmvVssX9WZpM/Open-Reads)

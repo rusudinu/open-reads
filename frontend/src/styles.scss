@@ -1,4 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/stylesheets/theme";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.simple-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+//noinspection HtmlDeprecatedTag
+mat-spinner {
+  margin: 3rem auto;
+  display: block;
+}
+
+.profile-dropdown {
+  display: none;
+  background-color: #FDE2C4;
+  z-index: 1;
+}
+
+.profile:hover .hide-name {
+  display: none;
+}
+
+.profile:hover .profile-dropdown {
+  display: block;
+  cursor: pointer;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

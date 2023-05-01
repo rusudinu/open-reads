@@ -19,5 +19,11 @@ nav {
 }
 
 .nav-offset {
-  height: 4rem;
+  height: 5rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .nav-offset {
+    height: 7rem;
+  }
 }
