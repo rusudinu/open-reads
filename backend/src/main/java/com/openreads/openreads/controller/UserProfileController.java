@@ -34,7 +34,7 @@ public class UserProfileController {
         return userProfileService.saveUserProfile(user);
     }
 
-    @PutMapping
+    @PutMapping("/description")
     public User updateUserDescription(@RequestBody String newDescription){
         Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
