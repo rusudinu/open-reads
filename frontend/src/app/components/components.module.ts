@@ -10,7 +10,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { BookComponent } from './book/book.component';
 import { AddBookComponent } from './add-book/add-book.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Component} from "@angular/core";
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {ReactiveFormsModule} from "@angular/forms";
         MatIconModule,
         MatProgressSpinnerModule,
         ReactiveFormsModule,
+        FormsModule,
     ],
   providers: [ HttpClient, SnackbarModule, ProfileService ]
 })

@@ -4,7 +4,13 @@ import com.openreads.openreads.model.User;
 import com.openreads.openreads.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -13,8 +19,10 @@ public class UserProfileController {
     private final UserProfileService userProfileService;
 
     @GetMapping("/me")
-    public User getMyProfile(Authentication authentication) {
-        return userProfileService.getMyProfile(authentication.getName());
+    public User getMyProfile() {
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        return userProfileService.getMyProfile((String) attributes.get("preferred_username"));
     }
 
     @GetMapping("/{username}")
@@ -25,5 +33,26 @@ public class UserProfileController {
     @PostMapping
     public User saveUserProfile(@RequestBody User user) {
         return userProfileService.saveUserProfile(user);
+    }
+
+    @PutMapping("/description")
+    public User updateUserDescription(@RequestBody String newDescription) {
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        return userProfileService.updateUserDescription((String) attributes.get("preferred_username"), newDescription);
+    }
+
+    @PutMapping("/add-friend/{username}")
+    public void addFriend(@PathVariable String username) {
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        userProfileService.addFriend((String) attributes.get("preferred_username"), username);
+    }
+
+    @GetMapping("/friends")
+    public List<User> getFriends() {
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        return userProfileService.getFriends((String) attributes.get("preferred_username"));
     }
 }
