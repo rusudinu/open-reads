@@ -1,20 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from "../../../model/User";
-import {ProfileService} from "./profile.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {SnackbarService} from "../../shared/snackbar/snackbar.service";
-import {Book} from "../../../model/Book";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { User } from "../../../model/User";
+import { ProfileService } from "./profile.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../../environments/environment";
+import { SnackbarService } from "../../shared/snackbar/snackbar.service";
+import { Book } from "../../../model/Book";
+import { Router } from "@angular/router";
 
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: [ './profile.component.scss' ]
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
   user: User | undefined;
   friends: User[] = [];
   loading = true;
@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit{
 
   constructor(private profileService: ProfileService, private fb: FormBuilder, private http: HttpClient, private snackbar: SnackbarService, private router: Router) {
     this.profileForm = this.fb.group({
-      description: ['', Validators.required]
+      description: [ '', Validators.required ]
     });
     this.profileService.getUser().subscribe(user => {
       this.user = user;
@@ -36,9 +36,12 @@ export class ProfileComponent implements OnInit{
     this.getFriends();
   }
 
-  getFriends(): void{
-    this.http.get(environment.apiUrl + '/profile/friends').subscribe()
+  getFriends(): void {
+    this.http.get(environment.apiUrl + '/profile/friends').subscribe((friends: User[]) => {
+      this.friends = friends;
+    });
   }
+
   toggleEditProfile(): void {
     this.showEdit = !this.showEdit;
   }
@@ -62,7 +65,7 @@ export class ProfileComponent implements OnInit{
   }
 
   bookClicked(book: Book) {
-    this.router.navigate([`/book/${book.id}`])
+    this.router.navigate([ `/book/${book.id}` ])
   }
 }
 
