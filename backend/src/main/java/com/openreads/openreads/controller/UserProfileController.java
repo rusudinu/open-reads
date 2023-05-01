@@ -21,7 +21,7 @@ public class UserProfileController {
     public User getMyProfile() {
         Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
-        return  userProfileService.getMyProfile((String) attributes.get("preferred_username"));
+        return userProfileService.getMyProfile((String) attributes.get("preferred_username"));
     }
 
     @GetMapping("/{username}")
@@ -35,9 +35,16 @@ public class UserProfileController {
     }
 
     @PutMapping("/description")
-    public User updateUserDescription(@RequestBody String newDescription){
+    public User updateUserDescription(@RequestBody String newDescription) {
         Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
         return userProfileService.updateUserDescription((String) attributes.get("preferred_username"), newDescription);
+    }
+
+    @PutMapping("/add-friend/{username}")
+    public void addFriend(@PathVariable String username) {
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        userProfileService.addFriend((String) attributes.get("preferred_username"), username);
     }
 }
