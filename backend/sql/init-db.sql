@@ -15,17 +15,18 @@ create table book
 
 create table `open-reads`.open_reads_user
 (
-    username               varchar(255) not null
+    id                     varchar(255) not null
         primary key,
     description            varchar(255) null,
     last_action_time_stamp bigint       null,
     name                   varchar(255) null,
-    profile_imageurl       varchar(255) null
+    profile_imageurl       varchar(255) null,
+    username               varchar(255) null
 );
 
-INSERT INTO `open-reads`.open_reads_user (username, description, last_action_time_stamp, name, profile_imageurl) VALUES ('2b07a57e-8a94-4a4c-ac5a-263ee4dde594', 'This is the admin account', 1682924044292, 'Dinu-Stefan', 'https://avatars.githubusercontent.com/u/35799602?v=4');
-INSERT INTO `open-reads`.open_reads_user (username, description, last_action_time_stamp, name, profile_imageurl) VALUES ('8f8b218e-3197-4001-9ac2-0f24da0869a9', 'This is the demo account', 1682923978603, 'Demo', 'https://avatars.githubusercontent.com/u/92299329?v=4');
 
+INSERT INTO `open-reads`.open_reads_user (id, description, last_action_time_stamp, name, profile_imageurl, username) VALUES ('0b2f8150-bf05-4481-806a-83a7f2e8a5ae', 'This is the description for the admin user.', 1682945693184, null, 'https://avatars.githubusercontent.com/u/35799602?v=4', 'rusu');
+INSERT INTO `open-reads`.open_reads_user (id, description, last_action_time_stamp, name, profile_imageurl, username) VALUES ('556c788c-c418-437d-830e-030adb607abf', 'This is the description for the demo user.', 1682945685130, null, 'https://avatars.githubusercontent.com/u/92299329?v=4', 'demo');
 
 INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, name) VALUES (1, 'Gayle Laakmann McDowell', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1391311964i/12544648.jpg', 'Now in the 5th edition, Cracking the Coding Interview gives you the interview preparation you need to get the top software developer jobs. This is a deeply technical book and focuses on the software engineering skills to ace your interview. The book is over 500 pages and includes 150 programming interview questions and answers, as well as other advice.', 0, 'Cracking the Coding Interview: 150 Programming Questions and Solutions');
 INSERT INTO `open-reads`.book (id, author, cover_imageurl, description, genre, name) VALUES (2, 'Andy Hunt', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1401432508i/4099.jpg', 'Straight from the programming trenches, The Pragmatic Programmer cuts through the increasing specialization and technicalities of modern software development to examine the core process--taking a requirement and producing working, maintainable code that delights its users. It covers topics ranging from personal responsibility and career development to architectural techniques for keeping your code flexible and easy to adapt and reuse. Read this book, and you\'ll learn how to Fight software rot; Avoid the trap of duplicating knowledge; Write flexible, dynamic, and adaptable code; Avoid programming by coincidence; Bullet-proof your code with contracts, assertions, and exceptions; Capture real requirements; Test ruthlessly and effectively; Delight your users; Build teams of pragmatic programmers; and Make your developments more precise with automation. Written as a series of self-contained sections and filled with entertaining anecdotes, thoughtful examples, and interesting analogies, The Pragmatic Programmer illustrates the best practices and major pitfalls of many different aspects of software development. Whether you"re a new coder, an experienced programmer, or a manager responsible for software projects, use these lessons daily, and you"ll quickly see improvements in personal productivity, accuracy, and job satisfaction. You\'ll learn skills and develop habits and attitudes that form the foundation for long-term success in your career. You"ll become a Pragmatic Programmer.', 0, 'The pragmatic programmer');
