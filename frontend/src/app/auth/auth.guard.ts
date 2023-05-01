@@ -16,7 +16,7 @@ export class AuthGuard extends KeycloakAuthGuard {
     this.authenticated = await this.keycloakAngular.isLoggedIn();
     if (!this.authenticated) {
       await this.keycloakAngular.login({
-        redirectUri: window.location.origin + state.url.replace(/[#?&]/g, ''),
+        redirectUri: window.location.origin,
       });
     }
 
