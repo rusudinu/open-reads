@@ -35,4 +35,15 @@ public class UserProfileService {
     public User saveUserProfile(User user) {
         return userRepository.save(user);
     }
+
+    public User updateUserDescription(String username, String newDescription){
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
+            User userToUpdate = user.get();
+            userToUpdate.setDescription(newDescription);
+            return userRepository.save(userToUpdate);
+        } else {
+            return null;
+        }
+    }
 }
