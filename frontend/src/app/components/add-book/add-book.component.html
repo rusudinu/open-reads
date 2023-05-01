@@ -2,7 +2,7 @@
 <p>You can use the form below to add it</p>
 
 
-<form [formGroup]="addBookForm" (ngSubmit)="onSubmit()" novalidate>
+<form [formGroup]="addBookForm">
   <div class="row">
     <div class="col">
       <p>
@@ -29,15 +29,13 @@
           <option value="FICTION">Fiction</option>
         </select>
       </p>
-
     </div>
-
   </div>
   <div class="row">
     <label for="description"></label>
     <textarea id="description" name="description" rows="4" cols="45" placeholder="Enter a description"></textarea>
   </div>
   <div class="col mt-3">
-   <button type="button" class="btn btn-outline-primary custom-btn">Add book</button>
+   <button type="button" class="btn btn-outline-primary custom-btn" (click)="addBook()">Add book</button>
   </div>
 </form>

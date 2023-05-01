@@ -27,4 +27,9 @@ public class BookController {
     public Book saveBook(@RequestBody Book book) {
         return bookService.saveBook(book);
     }
+
+//    @PutMapping("/mark-as-reading/{id}")
+//    public Book markAsReading(@PathVariable Long id, Authentication authentication) {
+//        return bookService.markAsReading(id);
+//    }
 }
