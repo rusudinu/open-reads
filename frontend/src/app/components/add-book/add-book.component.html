@@ -1,0 +1,43 @@
+<h3>The book you searched for cannot be found.</h3>
+<p>You can use the form below to add it</p>
+
+
+<form [formGroup]="addBookForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="row">
+    <div class="col">
+      <p>
+        <label for="book-name"> </label>
+        <input type="text" id="book-name" name="book-name" formControlName="bookName" placeholder="Book name">
+      </p>
+
+      <p>
+        <label for="author-name"> </label>
+        <input type="text" id="author-name" name="author-name" formControlName="authorName" placeholder="Author name">
+      </p>
+
+      <p>
+        <label for="image-url"></label>
+        <input type="text" id="image-url" name="image-url" formControlName="imageUrl" placeholder="Image URL">
+      </p>
+      <p>
+        <label for="category"></label>
+        <select id="category" name="category" formControlName="category">
+          <option value="NONFICTION">Nonfiction</option>
+          <option value="ROMANCE">Romance</option>
+          <option value="MYSTERY">Mystery</option>
+          <option value="THRILLER">Thriller</option>
+          <option value="FICTION">Fiction</option>
+        </select>
+      </p>
+
+    </div>
+
+  </div>
+  <div class="row">
+    <label for="description"></label>
+    <textarea id="description" name="description" rows="4" cols="45" placeholder="Enter a description"></textarea>
+  </div>
+  <div class="col mt-3">
+   <button type="button" class="btn btn-outline-primary custom-btn">Add book</button>
+  </div>
+</form>

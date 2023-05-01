@@ -1,0 +1,67 @@
+
+
+textarea {
+  padding: 10px;
+  border: 2px solid #FDE2C4;
+  border-radius: 5px;
+  resize: none;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #FDE2C4;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+textarea{
+  max-width: 700px;
+}
+
+button.custom-btn {
+  background-color: transparent;
+  border-color: #FDE2C4;
+  color: #000;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+select {
+  padding: 10px;
+  border: 2px solid #FDE2C4;
+  border-radius: 5px;
+  background: white;
+}
+
+select:focus {
+  outline: none;
+  border-color: #FDE2C4 !important;
+  box-shadow: 0 0 0 0.2rem rgba(253, 226, 196, 0.25) !important;
+}
+button.custom-btn:hover {
+  background-color: #FDE2C4;
+  color: black;
+}
+input:focus {
+  outline: none;
+  border-color: #FDE2C4 !important;
+  box-shadow: 0 0 0 0.2rem rgba(253, 226, 196, 0.25) !important;
+}
+textarea:focus {
+  outline: none;
+  border-color: #FDE2C4 !important;
+  box-shadow: 0 0 0 0.2rem rgba(253, 226, 196, 0.25) !important;
+}
+button:focus {
+  outline: none;
+  border-color: #FDE2C4 !important;
+  box-shadow: 0 0 0 0.2rem rgba(253, 226, 196, 0.25) !important;
+}
+
