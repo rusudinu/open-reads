@@ -1,6 +1,7 @@
 package com.openreads.openreads.service;
 
 import com.openreads.openreads.model.Book;
+import com.openreads.openreads.model.BookStatus;
 import com.openreads.openreads.model.Genre;
 import com.openreads.openreads.model.User;
 import com.openreads.openreads.repository.BookRepository;
@@ -63,6 +64,11 @@ public class BookService {
 
     public List<Book> getRecommendedBooks(String username) {
         User user = userProfileService.getUserProfile(username);
-        return bookRepository.getRecommendedBooks(user.getFavouriteGenre().toString(), user.getFavouriteAuthor(), username);
+        return bookRepository.getRecommendedBooks(user.getFavouriteGenre().toString(), user.getFavouriteAuthor(), user.getId());
+    }
+
+    public BookStatus getBookStatus(String username, Long bookId) {
+        User user = userProfileService.getUserProfile(username);
+        return bookRepository.getBookStatus(user.getId(), bookId);
     }
 }

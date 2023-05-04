@@ -1,6 +1,7 @@
 package com.openreads.openreads.controller;
 
 import com.openreads.openreads.model.Book;
+import com.openreads.openreads.model.BookStatus;
 import com.openreads.openreads.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -58,5 +59,12 @@ public class BookController {
         Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
         bookService.markAsWantToRead((String) attributes.get("preferred_username"), bookId);
+    }
+
+    @GetMapping("/status/{bookId}")
+    public BookStatus getBookStatus(@PathVariable Long bookId) {
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        return bookService.getBookStatus((String) attributes.get("preferred_username"), bookId);
     }
 }
