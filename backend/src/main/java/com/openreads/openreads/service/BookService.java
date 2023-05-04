@@ -34,6 +34,7 @@ public class BookService {
             return;
         }
         user.getCurrentlyReading().add(book);
+        user.getWantToRead().remove(book);
         userProfileService.saveUserProfile(user);
     }
 
