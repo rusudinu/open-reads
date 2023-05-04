@@ -1,0 +1,15 @@
+<div class="row mt-3">
+  <h5>Read books</h5>
+  <img *ngFor="let book of user?.read" [src]="book?.coverImageURL" alt="book cover" class="cursor-pointer"
+       (click)="bookClicked(book)"/>
+</div>
+<div class="row mt-3">
+  <h5>Want to read books</h5>
+  <img *ngFor="let book of user?.wantToRead" [src]="book?.coverImageURL" alt="book cover" class="cursor-pointer"
+       (click)="bookClicked(book)"/>
+</div>
+<div class="row mt-3">
+  <h5>Currently reading books</h5>
+  <img *ngFor="let book of user?.currentlyReading" [src]="book?.coverImageURL" alt="book cover" class="cursor-pointer"
+       (click)="bookClicked(book)"/>
+</div>

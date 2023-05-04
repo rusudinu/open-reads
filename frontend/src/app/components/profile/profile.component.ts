@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from "../../../model/User";
-import { ProfileService } from "./profile.service";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../../environments/environment";
-import { SnackbarService } from "../../shared/snackbar/snackbar.service";
-import { Book } from "../../../model/Book";
-import { Router } from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {User} from "../../../model/User";
+import {ProfileService} from "./profile.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
+import {SnackbarService} from "../../shared/snackbar/snackbar.service";
+import {Book} from "../../../model/Book";
+import {Router} from "@angular/router";
 
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: [ './profile.component.scss' ]
+  styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
   user: User | undefined;
@@ -21,9 +21,9 @@ export class ProfileComponent implements OnInit {
   showEdit: boolean = false;
   profileForm: FormGroup;
 
-  constructor(private profileService: ProfileService, private fb: FormBuilder, private http: HttpClient, private snackbar: SnackbarService, private router: Router) {
+  constructor(private profileService: ProfileService, private fb: FormBuilder, private http: HttpClient, private snackbar: SnackbarService) {
     this.profileForm = this.fb.group({
-      description: [ '', Validators.required ]
+      description: ['', Validators.required]
     });
     this.profileService.getUser().subscribe(user => {
       this.user = user;
@@ -64,8 +64,6 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  bookClicked(book: Book) {
-    this.router.navigate([ `/book/${book.id}` ])
-  }
+
 }
 
