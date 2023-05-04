@@ -47,4 +47,48 @@ public class User {
             return new ArrayList<>();
         return List.of(friendsList.split(","));
     }
+
+    public Genre getFavouriteGenre() {
+        List<Genre> genres = new ArrayList<>();
+        for (Book book : read) {
+            genres.add(book.getGenre());
+        }
+        for (Book book : currentlyReading) {
+            genres.add(book.getGenre());
+        }
+        for (Book book : wantToRead) {
+            genres.add(book.getGenre());
+        }
+        if (genres.isEmpty()) {
+            return Genre.NONFICTION;
+        }
+        return genres.stream().reduce((genre, genre2) -> {
+            if (genre == genre2) {
+                return genre;
+            }
+            return Genre.NONFICTION;
+        }).get();
+    }
+
+    public String getFavouriteAuthor(){
+        List<String> authors = new ArrayList<>();
+        for (Book book : read) {
+            authors.add(book.getAuthor());
+        }
+        for (Book book : currentlyReading) {
+            authors.add(book.getAuthor());
+        }
+        for (Book book : wantToRead) {
+            authors.add(book.getAuthor());
+        }
+        if (authors.isEmpty()) {
+            return "Andy Hunt";
+        }
+        return authors.stream().reduce((author, author2) -> {
+            if (author.equals(author2)) {
+                return author;
+            }
+            return "Andy Hunt";
+        }).get();
+    }
 }
