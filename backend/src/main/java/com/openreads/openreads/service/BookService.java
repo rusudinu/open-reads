@@ -51,7 +51,7 @@ public class BookService {
     public void markAsWantToRead(String username, Long bookId) {
         Book book = bookRepository.findById(bookId).get();
         User user = userProfileService.getUserProfile(username);
-        if (user.getWantToRead().contains(book)) {
+        if (user.getWantToRead().contains(book) || user.getRead().contains(book) || user.getCurrentlyReading().contains(book)) {
             return;
         }
         user.getWantToRead().add(book);
