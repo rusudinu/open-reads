@@ -32,6 +32,13 @@ public class BookController {
         return bookService.saveBook(book);
     }
 
+    @GetMapping("/recommended")
+    public List<Book> getRecommendedBooks(){
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> attributes = ((JwtAuthenticationToken) authToken).getTokenAttributes();
+        return bookService.getRecommendedBooks((String) attributes.get("preferred_username"));
+    }
+
     @PutMapping("/mark-as-reading/{bookId}")
     public void markAsReading(@PathVariable Long bookId) {
         Authentication authToken = SecurityContextHolder.getContext().getAuthentication();

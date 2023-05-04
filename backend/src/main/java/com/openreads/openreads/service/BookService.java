@@ -1,6 +1,7 @@
 package com.openreads.openreads.service;
 
 import com.openreads.openreads.model.Book;
+import com.openreads.openreads.model.Genre;
 import com.openreads.openreads.model.User;
 import com.openreads.openreads.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
@@ -56,5 +57,10 @@ public class BookService {
         }
         user.getWantToRead().add(book);
         userProfileService.saveUserProfile(user);
+    }
+
+    public List<Book> getRecommendedBooks(String username) {
+        User user = userProfileService.getUserProfile(username);
+        return bookRepository.getRecommendedBooks(user.getFavouriteGenre().toString(), user.getFavouriteAuthor(), username);
     }
 }
