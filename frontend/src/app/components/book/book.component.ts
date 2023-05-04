@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { environment } from "../../../environments/environment";
 import { Book } from "../../../model/Book";
+import { BookStatus } from "../../../model/BookStatus";
 import { SnackbarService } from "../../shared/snackbar/snackbar.service";
 import { BookService } from "./book.service";
 
@@ -13,6 +14,7 @@ import { BookService } from "./book.service";
 })
 export class BookComponent implements OnInit {
   book: Book;
+  bookStatus: BookStatus = BookStatus.NONE;
   loading: Boolean = true;
 
   constructor(
@@ -32,12 +34,7 @@ export class BookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.bookService.getBook(params['id']).subscribe((book: Book) => {
-        this.book = book;
-        this.loading = false;
-      });
-    });
+    this.refreshBookStatus();
   }
 
   markAsRead() {
@@ -47,6 +44,7 @@ export class BookComponent implements OnInit {
       } else {
         this.snackbar.error('Error marking book as read');
       }
+      this.refreshBookStatus();
     });
   }
 
@@ -57,6 +55,7 @@ export class BookComponent implements OnInit {
       } else {
         this.snackbar.error('Error marking book as currently reading');
       }
+      this.refreshBookStatus();
     });
   }
 
@@ -67,6 +66,21 @@ export class BookComponent implements OnInit {
       } else {
         this.snackbar.error('Error marking book as want to read');
       }
+      this.refreshBookStatus();
     });
   }
+
+  refreshBookStatus(): void {
+    this.route.params.subscribe(params => {
+      this.bookService.getBook(params['id']).subscribe((book: Book) => {
+        this.book = book;
+        this.loading = false;
+      });
+      this.bookService.getBookStatus(params['id']).subscribe((bookStatus: BookStatus) => {
+        this.bookStatus = bookStatus;
+      });
+    });
+  }
+
+  protected readonly BookStatus = BookStatus;
 }

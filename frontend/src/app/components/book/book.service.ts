@@ -14,4 +14,8 @@ export class BookService {
     return this.http.get(environment.apiUrl + "/book/" + id);
   }
 
+  getBookStatus(id: string): Observable<any> {
+    return this.http.get(environment.apiUrl + "/book/status/" + id);
+  }
+
 }
