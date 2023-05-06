@@ -14,4 +14,8 @@ public class FeedEntry {
     String bookName;
     String author;
     String statusText;
+    String friendImageUrl;
+    String bookImageUrl;
+    String bookDescription;
+    Long bookId;
 }

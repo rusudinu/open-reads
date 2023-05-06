@@ -24,7 +24,11 @@ public class FeedService {
                 FeedEntry feedEntry = new FeedEntry();
                 feedEntry.setFriendName(friend.getUsername());
                 feedEntry.setBookName(book.getName());
+                feedEntry.setBookId(book.getId());
                 feedEntry.setAuthor(book.getAuthor());
+                feedEntry.setFriendImageUrl(user.getProfileImageURL());
+                feedEntry.setBookImageUrl(book.getCoverImageURL());
+                feedEntry.setBookDescription(book.getDescription());
                 feedEntry.setStatusText(" started reading ");
                 return feedEntry;
             }).collect(Collectors.toList());
@@ -33,6 +37,10 @@ public class FeedService {
                 feedEntry.setFriendName(friend.getUsername());
                 feedEntry.setBookName(book.getName());
                 feedEntry.setAuthor(book.getAuthor());
+                feedEntry.setBookId(book.getId());
+                feedEntry.setFriendImageUrl(user.getProfileImageURL());
+                feedEntry.setBookImageUrl(book.getCoverImageURL());
+                feedEntry.setBookDescription(book.getDescription());
                 feedEntry.setStatusText(" is currently reading ");
                 return feedEntry;
             }).toList());
@@ -42,6 +50,10 @@ public class FeedService {
                 feedEntry.setFriendName(friend.getUsername());
                 feedEntry.setBookName(book.getName());
                 feedEntry.setAuthor(book.getAuthor());
+                feedEntry.setBookId(book.getId());
+                feedEntry.setFriendImageUrl(user.getProfileImageURL());
+                feedEntry.setBookImageUrl(book.getCoverImageURL());
+                feedEntry.setBookDescription(book.getDescription());
                 feedEntry.setStatusText(" wants to read ");
                 return feedEntry;
             }).toList());
