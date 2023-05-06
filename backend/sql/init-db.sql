@@ -88,9 +88,15 @@ create table `open-reads`.open_reads_user_want_to_read
         foreign key (want_to_read_id) references `open-reads`.book (id)
 );
 
+INSERT INTO `open-reads`.open_reads_user_currently_reading (user_id, currently_reading_id) VALUES ('4217092d-9133-41a5-83db-e52079a98391', 12);
 INSERT INTO `open-reads`.open_reads_user_currently_reading (user_id, currently_reading_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 2);
 
+
+INSERT INTO `open-reads`.open_reads_user_read (user_id, read_id) VALUES ('4217092d-9133-41a5-83db-e52079a98391', 14);
 INSERT INTO `open-reads`.open_reads_user_read (user_id, read_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 1);
 INSERT INTO `open-reads`.open_reads_user_read (user_id, read_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 10);
 
+
+INSERT INTO `open-reads`.open_reads_user_want_to_read (user_id, want_to_read_id) VALUES ('4217092d-9133-41a5-83db-e52079a98391', 2);
 INSERT INTO `open-reads`.open_reads_user_want_to_read (user_id, want_to_read_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 8);
+
