@@ -1,0 +1,44 @@
+ngb-carousel, img {
+  width: 150px;
+}
+
+.friend-img {
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.book-img {
+  max-height: 300px;
+  width: auto;
+  margin-right: 1rem;
+}
+
+.status {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.author, .description {
+  margin-top: 0;
+}
+
+.description {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.read-more {
+  font-weight: bold;
+}
+
+.read-more:hover {
+  color: #F4A424;
+}
+
+.card-border {
+  border: #F4A424 solid 2px;
+  border-radius: 10px;
+}
