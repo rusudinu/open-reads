@@ -37,9 +37,7 @@ public class RedisCacheConfig {
 
     public static final String MANAGER = "redisCacheManager";
 
-    public static final String BOOK_DATA = "book-data";
-
-    public static final String BOOK_COMMENTS = "book-comments";
+    public static final String USER_FEED = "user-feed";
 
     @Value("${open-reads.redis.cachePrefix:}")
     private String cachePrefix;
@@ -75,8 +73,7 @@ public class RedisCacheConfig {
     @Primary
     CacheManager cacheManager(RedissonClient redissonClient) {
         Map<String, CacheConfig> cacheNamesConfigurationMap = new HashMap<>();
-        cacheNamesConfigurationMap.put(BOOK_DATA, getCacheConfig(2 * HOURS));
-        cacheNamesConfigurationMap.put(BOOK_COMMENTS, getCacheConfig(10 * MINUTES));
+        cacheNamesConfigurationMap.put(USER_FEED, getCacheConfig(10 * MINUTES));
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
