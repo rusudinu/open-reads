@@ -12,7 +12,7 @@
       </div>
       <div class="row"><p>{{user?.description}}</p></div>
     </div>
-    <div class="col-sm-12 col-md-4">
+    <div class="col-sm-12 col-md-4 p-2 card-border">
       <h5>Friends</h5>
       <div class="row" *ngFor="let friend of friends">
         <img [src]="friend.profileImageURL" class="friend-profile-picture col" alt="user profile picture"/>
