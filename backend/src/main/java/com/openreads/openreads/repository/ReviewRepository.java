@@ -14,5 +14,5 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("SELECT r.rating FROM Review r WHERE r.user.username = ?1 AND r.book.id = ?2")
     Double getMyRating(String username, Long bookId);
 
-    Review findByUserAndBook(User user, Book book);
+    Review findByUserIdAndBook_Id(String userId, Long bookId);
 }

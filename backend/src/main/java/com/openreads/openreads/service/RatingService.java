@@ -1,5 +1,6 @@
 package com.openreads.openreads.service;
 
+import com.openreads.openreads.model.Book;
 import com.openreads.openreads.model.Review;
 import com.openreads.openreads.model.User;
 import com.openreads.openreads.repository.ReviewRepository;
@@ -27,7 +28,8 @@ public class RatingService {
         User user = userProfileService.getUserProfile(username);
         if (user == null)
             return;
-        Review review = reviewRepository.findByUserAndBook(user, bookService.getBook(bookId));
+        Book book = bookService.getBook(bookId);
+        Review review = reviewRepository.findByUserIdAndBook_Id(user.getId(), book.getId());
         if (review != null) {
             review.setRating(rating);
             reviewRepository.save(review);
@@ -35,7 +37,7 @@ public class RatingService {
         }
         reviewRepository.save(Review.builder()
                 .user(user)
-                .book(bookService.getBook(bookId))
+                .book(book)
                 .rating(rating)
                 .build());
     }
