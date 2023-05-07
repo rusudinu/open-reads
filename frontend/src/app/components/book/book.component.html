@@ -14,7 +14,10 @@
                 (click)="markAsRead();">Read
         </button>
       </div>
-      <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+      <div>
+        Average rating: {{averageRating}}
+      </div>
+      <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false" (rateChange)="setBookRating()"></ngb-rating>
     </div>
   </div>
   <div class="col">

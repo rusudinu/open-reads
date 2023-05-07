@@ -23,4 +23,15 @@ export class BookService {
     return this.http.get<Book[]>(environment.apiUrl + "/book/recommended");
   }
 
+  getBookRating(id: number): Observable<number> {
+    return this.http.get<number>(environment.apiUrl + "/rating/" + id);
+  }
+
+  getMyBookRating(id: number): Observable<number> {
+    return this.http.get<number>(environment.apiUrl + "/rating/me/" + id);
+  }
+
+  setBookRating(id: string, rating: number): Observable<any> {
+    return this.http.put(environment.apiUrl + "/rating/" + id + "/" + rating, {});
+  }
 }
