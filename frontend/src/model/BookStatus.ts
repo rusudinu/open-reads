@@ -1,0 +1,3 @@
+export enum BookStatus {
+  WANT_TO_READ = "WANT_TO_READ", CURRENTLY_READING = "CURRENTLY_READING", READ = "READ", NONE = "NONE"
+}

@@ -1,6 +1,8 @@
 package com.openreads.openreads.service;
 
 import com.openreads.openreads.model.Book;
+import com.openreads.openreads.model.BookStatus;
+import com.openreads.openreads.model.Genre;
 import com.openreads.openreads.model.User;
 import com.openreads.openreads.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +36,7 @@ public class BookService {
             return;
         }
         user.getCurrentlyReading().add(book);
+        user.getWantToRead().remove(book);
         userProfileService.saveUserProfile(user);
     }
 
@@ -45,16 +48,27 @@ public class BookService {
         }
         user.getRead().add(book);
         user.getCurrentlyReading().remove(book);
+        user.getWantToRead().remove(book);
         userProfileService.saveUserProfile(user);
     }
 
     public void markAsWantToRead(String username, Long bookId) {
         Book book = bookRepository.findById(bookId).get();
         User user = userProfileService.getUserProfile(username);
-        if (user.getWantToRead().contains(book)) {
+        if (user.getWantToRead().contains(book) || user.getRead().contains(book) || user.getCurrentlyReading().contains(book)) {
             return;
         }
         user.getWantToRead().add(book);
         userProfileService.saveUserProfile(user);
+    }
+
+    public List<Book> getRecommendedBooks(String username) {
+        User user = userProfileService.getUserProfile(username);
+        return bookRepository.getRecommendedBooks(user.getFavouriteGenre().toString(), user.getFavouriteAuthor(), user.getId());
+    }
+
+    public BookStatus getBookStatus(String username, Long bookId) {
+        User user = userProfileService.getUserProfile(username);
+        return bookRepository.getBookStatus(user.getId(), bookId);
     }
 }

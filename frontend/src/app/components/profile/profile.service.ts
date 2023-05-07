@@ -6,7 +6,6 @@ import { AuthService } from "../../auth/service/auth.service";
 @Injectable()
 export class ProfileService {
   constructor(private authService: AuthService) {
-
   }
 
   getUser(): Observable<User> {

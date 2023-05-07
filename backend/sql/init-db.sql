@@ -88,9 +88,35 @@ create table `open-reads`.open_reads_user_want_to_read
         foreign key (want_to_read_id) references `open-reads`.book (id)
 );
 
+INSERT INTO `open-reads`.open_reads_user_currently_reading (user_id, currently_reading_id) VALUES ('4217092d-9133-41a5-83db-e52079a98391', 12);
 INSERT INTO `open-reads`.open_reads_user_currently_reading (user_id, currently_reading_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 2);
 
+
+INSERT INTO `open-reads`.open_reads_user_read (user_id, read_id) VALUES ('4217092d-9133-41a5-83db-e52079a98391', 14);
 INSERT INTO `open-reads`.open_reads_user_read (user_id, read_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 1);
 INSERT INTO `open-reads`.open_reads_user_read (user_id, read_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 10);
 
+
+INSERT INTO `open-reads`.open_reads_user_want_to_read (user_id, want_to_read_id) VALUES ('4217092d-9133-41a5-83db-e52079a98391', 2);
 INSERT INTO `open-reads`.open_reads_user_want_to_read (user_id, want_to_read_id) VALUES ('bfebd3f5-95f5-4656-bc8b-d1571da48df8', 8);
+
+create table `open-reads`.review
+(
+    id      bigint auto_increment
+        primary key,
+    comment varchar(255) null,
+    rating  double       null,
+    book_id bigint       null,
+    user_id varchar(255) null,
+    constraint FK70yrt09r4r54tcgkrwbeqenbs
+        foreign key (book_id) references `open-reads`.book (id),
+    constraint FKpg5dg1cydnjc17unds9k3sf9m
+        foreign key (user_id) references `open-reads`.open_reads_user (id)
+);
+
+
+INSERT INTO `open-reads`.review (id, comment, rating, book_id, user_id) VALUES (1, null, 5.0, 1, 'bfebd3f5-95f5-4656-bc8b-d1571da48df8');
+INSERT INTO `open-reads`.review (id, comment, rating, book_id, user_id) VALUES (2, null, 4.0, 2, 'bfebd3f5-95f5-4656-bc8b-d1571da48df8');
+INSERT INTO `open-reads`.review (id, comment, rating, book_id, user_id) VALUES (3, null, 2.0, 3, 'bfebd3f5-95f5-4656-bc8b-d1571da48df8');
+
+
