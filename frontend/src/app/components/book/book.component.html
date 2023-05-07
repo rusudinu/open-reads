@@ -3,10 +3,21 @@
     <img [src]="book.coverImageURL" alt="book cover"/>
     <div class="d-flex flex-column">
       <div class="btn-group mt-1 mb-1" role="group">
-        <button type="button" class="btn btn-outline-primary custom-btn" [class.active]="bookStatus === BookStatus.WANT_TO_READ" (click)="markAsWantToRead();">Want to Read</button>
-        <button type="button" class="btn btn-outline-primary custom-btn" [class.active]="bookStatus === BookStatus.CURRENTLY_READING" (click)="markAsCurrentlyReading();">Currently Reading</button>
-        <button type="button" class="btn btn-outline-primary custom-btn" [class.active]="bookStatus === BookStatus.READ" (click)="markAsRead();">Read</button>
+        <button type="button" class="btn btn-outline-primary custom-btn"
+                [class.active]="bookStatus === BookStatus.WANT_TO_READ" (click)="markAsWantToRead();">Want to Read
+        </button>
+        <button type="button" class="btn btn-outline-primary custom-btn"
+                [class.active]="bookStatus === BookStatus.CURRENTLY_READING" (click)="markAsCurrentlyReading();">
+          Currently Reading
+        </button>
+        <button type="button" class="btn btn-outline-primary custom-btn" [class.active]="bookStatus === BookStatus.READ"
+                (click)="markAsRead();">Read
+        </button>
       </div>
+      <div>
+        Average rating: {{averageRating}}
+      </div>
+      <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false" (rateChange)="setBookRating()"></ngb-rating>
     </div>
   </div>
   <div class="col">

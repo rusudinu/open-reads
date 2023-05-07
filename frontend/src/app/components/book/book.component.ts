@@ -1,21 +1,24 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import { environment } from "../../../environments/environment";
-import { Book } from "../../../model/Book";
-import { BookStatus } from "../../../model/BookStatus";
-import { SnackbarService } from "../../shared/snackbar/snackbar.service";
-import { BookService } from "./book.service";
+import {HttpClient} from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {environment} from "../../../environments/environment";
+import {Book} from "../../../model/Book";
+import {BookStatus} from "../../../model/BookStatus";
+import {SnackbarService} from "../../shared/snackbar/snackbar.service";
+import {BookService} from "./book.service";
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
-  styleUrls: [ './book.component.scss' ]
+  styleUrls: ['./book.component.scss']
 })
 export class BookComponent implements OnInit {
+  protected readonly BookStatus = BookStatus;
   book: Book;
   bookStatus: BookStatus = BookStatus.NONE;
   loading: Boolean = true;
+  starRating: number = 0;
+  averageRating: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -79,8 +82,26 @@ export class BookComponent implements OnInit {
       this.bookService.getBookStatus(params['id']).subscribe((bookStatus: BookStatus) => {
         this.bookStatus = bookStatus;
       });
+      this.getBookRating(params['id']);
+      this.getMyBookRating(params['id']);
     });
   }
 
-  protected readonly BookStatus = BookStatus;
+  getBookRating(id: number): void {
+    this.bookService.getBookRating(id).subscribe((rating: number) => {
+      this.averageRating = rating;
+    })
+  }
+
+  getMyBookRating(id: number): void {
+    this.bookService.getMyBookRating(id).subscribe((rating: number) => {
+      this.starRating = rating;
+    })
+  }
+
+  setBookRating(): void {
+    this.bookService.setBookRating(this.book.id!, this.starRating).subscribe(_ => {
+      this.refreshBookStatus();
+    })
+  }
 }
