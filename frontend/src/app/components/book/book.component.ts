@@ -1,21 +1,22 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import { environment } from "../../../environments/environment";
-import { Book } from "../../../model/Book";
-import { BookStatus } from "../../../model/BookStatus";
-import { SnackbarService } from "../../shared/snackbar/snackbar.service";
-import { BookService } from "./book.service";
+import {HttpClient} from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {environment} from "../../../environments/environment";
+import {Book} from "../../../model/Book";
+import {BookStatus} from "../../../model/BookStatus";
+import {SnackbarService} from "../../shared/snackbar/snackbar.service";
+import {BookService} from "./book.service";
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
-  styleUrls: [ './book.component.scss' ]
+  styleUrls: ['./book.component.scss']
 })
 export class BookComponent implements OnInit {
   book: Book;
   bookStatus: BookStatus = BookStatus.NONE;
   loading: Boolean = true;
+  starRating = 0;
 
   constructor(
     private route: ActivatedRoute,

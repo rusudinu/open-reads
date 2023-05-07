@@ -13,7 +13,7 @@ import {AddBookComponent} from './add-book/add-book.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Component} from "@angular/core";
 import {ShelvesComponent} from './shelves/shelves.component';
-import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbCarouselModule, NgbRating} from "@ng-bootstrap/ng-bootstrap";
 import {HomeService} from "./home/home.service";
 
 
@@ -33,7 +33,8 @@ import {HomeService} from "./home/home.service";
     MatProgressSpinnerModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    NgbRating
   ],
   providers: [HttpClient, SnackbarModule, ProfileService, HomeService]
 })
