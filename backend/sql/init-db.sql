@@ -56,11 +56,8 @@ create table `open-reads`.open_reads_user_currently_reading
 (
     user_id              varchar(255) not null,
     currently_reading_id bigint       not null,
-    constraint UK_4clivwtpt6ljgbwm1utfbsdqh
-        unique (currently_reading_id),
-    constraint FK9a9ytp0crmf55uba3o22d3ff1
+        unique (user_id, currently_reading_id),
         foreign key (currently_reading_id) references `open-reads`.book (id),
-    constraint FKpuesm9svcgwp6g6ti7fnp0qhc
         foreign key (user_id) references `open-reads`.open_reads_user (id)
 );
 
@@ -68,11 +65,8 @@ create table `open-reads`.open_reads_user_read
 (
     user_id varchar(255) not null,
     read_id bigint       not null,
-    constraint UK_68o28o6t2gujfppmybm0nqgyy
-        unique (read_id),
-    constraint FK43vof6dh1hhkvb2wxvth0m5im
+        unique (user_id, read_id),
         foreign key (read_id) references `open-reads`.book (id),
-    constraint FKgct5qnu3w87putce0ksht4k9h
         foreign key (user_id) references `open-reads`.open_reads_user (id)
 );
 
@@ -80,11 +74,8 @@ create table `open-reads`.open_reads_user_want_to_read
 (
     user_id         varchar(255) not null,
     want_to_read_id bigint       not null,
-    constraint UK_rs5n4vwrjm4dd3g15uncyftcr
-        unique (want_to_read_id),
-    constraint FKg6scpxlsw7b390e1hkc7ms7kw
+        unique (user_id, want_to_read_id),
         foreign key (user_id) references `open-reads`.open_reads_user (id),
-    constraint FKjg7nald3kufg8jcyanrquxsre
         foreign key (want_to_read_id) references `open-reads`.book (id)
 );
 

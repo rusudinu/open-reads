@@ -27,11 +27,11 @@ public class User {
     private String profileImageURL;
     private Long lastActionTimeStamp;
     private String friendsList = "";
-    @OneToMany
+    @ManyToMany
     private List<Book> currentlyReading = new ArrayList<>();
-    @OneToMany
+    @ManyToMany
     private List<Book> read = new ArrayList<>();
-    @OneToMany
+    @ManyToMany
     private List<Book> wantToRead = new ArrayList<>();
 
     public void addFriend(String username) {
