@@ -27,6 +27,12 @@ public class RatingService {
         User user = userProfileService.getUserProfile(username);
         if (user == null)
             return;
+        Review review = reviewRepository.findByUserAndBook(user, bookService.getBook(bookId));
+        if (review != null) {
+            review.setRating(rating);
+            reviewRepository.save(review);
+            return;
+        }
         reviewRepository.save(Review.builder()
                 .user(user)
                 .book(bookService.getBook(bookId))
