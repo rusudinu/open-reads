@@ -14,7 +14,7 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/shelves" routerLinkActive="activeLink">Shelves</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="authService.getRoles().includes('ADMIN')">
           <a class="nav-link" routerLink="/add-book" routerLinkActive="activeLink">Add Book</a>
         </li>
       </ul>

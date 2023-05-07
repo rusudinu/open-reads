@@ -30,7 +30,11 @@ const routes: Routes = [
   },
   {
     path: 'add-book',
-    component: AddBookComponent
+    component: AddBookComponent,
+    canActivate: [ AuthGuard ],
+    data: {
+      role: 'ADMIN'
+    }
   }
 ]
 

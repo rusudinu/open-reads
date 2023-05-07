@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private httpClient: HttpClient,
-    private authService: AuthService,
+    public authService: AuthService,
   ) {
 
   }
