@@ -4,13 +4,19 @@ Open-Source GoodReads clone, with a cleaner UI, book search, friends feed that w
 
 ## Team Members
 
-Rusu Dinu-Ștefan (email: dinu_stefan.rusu@stud.fils.upb.ro)
-
 Mîș Emilia-Oana (email: emilia_oana.mis@stud.fils.upb.ro)
+
+Rusu Dinu-Ștefan (email: dinu_stefan.rusu@stud.fils.upb.ro)
 
 ## URLs
 
 The FE is deployed here: https://openreads.codingshadows.com/, but will access the backend hosted on localhost.
+
+## Screenshots
+![Home screenshot](/screenshots/home.png?raw=true)
+![Add book screenshot](/screenshots/add-book.png?raw=true)
+![User profile screenshot](/screenshots/profile.png?raw=true)
+![Shelves screenshot](/screenshots/shelves.png?raw=true)
 
 ### Stories
 
