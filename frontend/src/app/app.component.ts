@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
   }
 
   getUser() {
-    setTimeout(() => {
+    this.oidcSecurityService.isAuthenticated$.subscribe(authenticated => {
       this.authService.getUserRoles().subscribe(roles => {
         this.userRoles = roles;
       });
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
         this.userProfile = user;
         this.loggedIn = user.id != "";
       });
-    }, 1000);
+    });
   }
 
   public login(): void {
