@@ -1,9 +1,6 @@
-import { KeycloakConfig } from 'keycloak-js';
-
-const keycloakConfig: KeycloakConfig = {
-  url: 'http://localhost:9001',
-  realm: 'open-reads',
-  clientId: 'open-reads',
+const keycloakConfig = {
+  KEYCLOAK_URL: 'http://localhost:9001/realms/open-reads',
+  KEYCLOAK_CLIENT: 'open-reads',
 };
 
 export default keycloakConfig;

@@ -10,10 +10,11 @@ import {AppComponent} from './app.component';
 import {NgbCarouselModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AuthModule} from "./auth/auth.module";
 import {BookService} from "./components/book/book.service";
 import {ComponentsModule} from "./components/components.module";
 import {SnackbarModule} from "./shared/snackbar/snackbar.module";
+import {AuthConfigModule} from "./auth/auth-config.module";
+import {AuthService} from "./auth/auth.service";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {SnackbarModule} from "./shared/snackbar/snackbar.module";
   ],
   imports: [
     BrowserModule,
-    AuthModule,
+    AuthConfigModule,
     MatProgressSpinnerModule,
     NgbModule,
     HttpClientModule,
@@ -34,7 +35,7 @@ import {SnackbarModule} from "./shared/snackbar/snackbar.module";
     NgbModule,
     NgbCarouselModule
   ],
-  providers: [BookService, HttpClient],
+  providers: [BookService, HttpClient, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

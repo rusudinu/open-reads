@@ -3,7 +3,8 @@
     <a class="navbar-brand" style="color: #FFFFFF" routerLink="/">
       <img class="navbar-brand-image ms-1" src="/assets/logo/open-reads-low-resolution-logo-color-on-transparent-background.svg" alt="Website logo"/>
     </a>
-    <button class="navbar-toggler hidden-sm-up me-1" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler hidden-sm-up me-1" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false"
+            aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse ms-2" id="navbarsDefault">
@@ -14,9 +15,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/shelves" routerLinkActive="activeLink">Shelves</a>
         </li>
-        <li class="nav-item" *ngIf="authService.getRoles().includes('ADMIN')">
-          <a class="nav-link" routerLink="/add-book" routerLinkActive="activeLink">Add Book</a>
-        </li>
+        <!--        <li class="nav-item" *ngIf="authService.getRoles().includes('ADMIN')">-->
+        <!--          <a class="nav-link" routerLink="/add-book" routerLinkActive="activeLink">Add Book</a>-->
+        <!--        </li>-->
       </ul>
     </div>
     <form>
