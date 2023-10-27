@@ -16,7 +16,8 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    data: {roles: [Roles.OIDC_USER]},
+    canActivate: [roleAndAuthGuard],
+    data: {roles: [Roles.OIDC_USER, Roles.OIDC_ADMIN]},
   },
   {
     path: 'unauthorized',
@@ -34,19 +35,19 @@ const routes: Routes = [
     path: 'shelves',
     component: ShelveComponent,
     canActivate: [roleAndAuthGuard],
-    data: {roles: [Roles.OIDC_USER]},
+    data: {roles: [Roles.OIDC_USER, Roles.OIDC_ADMIN]},
   },
   {
     path: 'profile',
     component: ProfileComponent,
     canActivate: [roleAndAuthGuard],
-    data: {roles: [Roles.OIDC_USER]},
+    data: {roles: [Roles.OIDC_USER, Roles.OIDC_ADMIN]},
   },
   {
     path: 'book/:id',
     component: BookComponent,
     canActivate: [roleAndAuthGuard],
-    data: {roles: [Roles.OIDC_USER]},
+    data: {roles: [Roles.OIDC_USER, Roles.OIDC_ADMIN]},
   },
   {
     path: 'add-book',

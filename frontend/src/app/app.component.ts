@@ -1,5 +1,5 @@
 import {HttpClient} from "@angular/common/http";
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
 import {debounceTime} from "rxjs";
@@ -15,15 +15,15 @@ import {OidcSecurityService} from "angular-auth-oidc-client";
 })
 export class AppComponent implements OnInit {
   isNavbarCollapsed = true;
-
+  userRoles: string[] = [];
   searchControl = new FormControl();
   shouldShowSearchResults = false;
   searchedBookName: string = "";
   searchResults: Book[] = [];
-
   public loggedIn: boolean = false;
   public userProfile = {
-    firstName: "test"
+    id: "",
+    username: ""
   };
 
   constructor(
@@ -40,11 +40,16 @@ export class AppComponent implements OnInit {
     this.getUser();
   }
 
-  async getUser() {
-    this.loggedIn = await this.authService.isLoggedIn();
-    if (this.loggedIn) {
-      this.userProfile = await this.authService.loadUserProfile();
-    }
+  getUser() {
+    this.authService.getUserRoles().subscribe(roles => {
+      this.userRoles = roles;
+    });
+    this.authService.getUser().subscribe(user => {
+      this.userProfile = user;
+      this.loggedIn = user.id != "";
+      console.log(this.userProfile)
+      console.log(this.loggedIn)
+    });
   }
 
   public login(): void {

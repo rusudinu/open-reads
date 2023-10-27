@@ -1,4 +1,4 @@
 export enum Roles {
-  OIDC_ADMIN = 'OIDC_ADMIN',
-  OIDC_USER = 'OIDC_USER '
+  OIDC_ADMIN = 'ADMIN',
+  OIDC_USER = 'USER'
 }

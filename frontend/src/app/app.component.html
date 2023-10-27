@@ -15,17 +15,17 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/shelves" routerLinkActive="activeLink">Shelves</a>
         </li>
-        <!--        <li class="nav-item" *ngIf="authService.getRoles().includes('ADMIN')">-->
-        <!--          <a class="nav-link" routerLink="/add-book" routerLinkActive="activeLink">Add Book</a>-->
-        <!--        </li>-->
+        <li class="nav-item" *ngIf="userRoles.includes('ADMIN')">
+          <a class="nav-link" routerLink="/add-book" routerLinkActive="activeLink">Add Book</a>
+        </li>
       </ul>
     </div>
     <form>
       <input [formControl]="searchControl" type="text" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
-    <div class="row" class="ms-2 profile">
+    <div class="row ms-2 profile">
       <a class="nav-link hide-name" routerLink="/profile" routerLinkActive="activeLink">
-        {{userProfile.firstName}}
+        {{userProfile.username}}
       </a>
       <div class="simple-row cursor-pointer" *ngIf="!loggedIn" (click)="login()">
         <span class="material-icons me-2">login</span>
@@ -38,7 +38,7 @@
             <span>Logout</span>
           </div>
           <a class="nav-link ms-4" routerLink="/profile" routerLinkActive="activeLink">
-            {{userProfile.firstName}}
+            {{userProfile.username}}
           </a>
         </div>
       </div>

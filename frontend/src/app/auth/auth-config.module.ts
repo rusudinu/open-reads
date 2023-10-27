@@ -21,7 +21,7 @@ import {environment} from "../../environments/environment";
       silentRenew: true,
       silentRenewUrl: `${window.location.origin}/silent-renew.html`,
       renewTimeBeforeTokenExpiresInSeconds: 10,
-      secureRoutes: [environment.apiUrl]
+      secureRoutes: [environment.apiUrl, 'http://localhost:8080/']
     }
   })],
   declarations: [
