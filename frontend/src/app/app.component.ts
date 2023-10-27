@@ -41,15 +41,15 @@ export class AppComponent implements OnInit {
   }
 
   getUser() {
-    this.authService.getUserRoles().subscribe(roles => {
-      this.userRoles = roles;
-    });
-    this.authService.getUser().subscribe(user => {
-      this.userProfile = user;
-      this.loggedIn = user.id != "";
-      console.log(this.userProfile)
-      console.log(this.loggedIn)
-    });
+    setTimeout(() => {
+      this.authService.getUserRoles().subscribe(roles => {
+        this.userRoles = roles;
+      });
+      this.authService.getUser().subscribe(user => {
+        this.userProfile = user;
+        this.loggedIn = user.id != "";
+      });
+    }, 1000);
   }
 
   public login(): void {
