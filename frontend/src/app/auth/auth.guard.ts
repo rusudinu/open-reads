@@ -1,35 +1,32 @@
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree} from '@angular/router';
-import {KeycloakAuthGuard, KeycloakService} from 'keycloak-angular';
+import {inject} from '@angular/core';
+import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from '@angular/router';
+import {OidcSecurityService} from 'angular-auth-oidc-client';
 
-@Injectable()
-export class AuthGuard extends KeycloakAuthGuard {
+import {take} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {AuthService} from './auth.service';
 
-  constructor(protected override router: Router, protected override keycloakAngular: KeycloakService) {
-    super(router, keycloakAngular);
-  }
+export const roleAndAuthGuard = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  const oidcSecurityService = inject(OidcSecurityService);
+  const router = inject(Router);
+  const authService = inject(AuthService);
 
 
-  public async isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
-
-    // Force the user to log in if currently unauthenticated.
-    this.authenticated = await this.keycloakAngular.isLoggedIn();
-    if (!this.authenticated) {
-      await this.keycloakAngular.login({
-        redirectUri: window.location.origin,
-      });
-    }
-
-    // Get the roles required from the route.
-    const requiredRoles = route.data['roles'];
-
-    // Allow the user to proceed if no additional roles are required to access the route.
-    if (!(requiredRoles instanceof Array) || requiredRoles.length === 0) {
+  return oidcSecurityService.getAccessToken().pipe(
+    take(1),
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    map(data => authService.parseJwt(data)['realm_access']['roles']),
+    map(roles => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      if (roles.includes('not_authenticated')) {
+        authService.redirectToKeycloak(route.url.join(''));
+        return false;
+      }
+      if (route.data['roles'] && route.data['roles'].every((role: any) => !roles.includes(role))) {
+        router.navigate(['/forbidden']);
+        return false;
+      }
       return true;
-    }
-
-    // Allow the user to proceed if all the required roles are present.
-    return requiredRoles.every((role) => this.roles.includes(role));
-  }
-
-}
+    })
+  );
+};

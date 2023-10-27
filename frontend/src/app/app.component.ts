@@ -1,33 +1,36 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl } from "@angular/forms";
-import { Router } from "@angular/router";
-import { KeycloakProfile } from "keycloak-js";
-import { debounceTime } from "rxjs";
-import { environment } from "../environments/environment";
-import { Book } from "../model/Book";
-import { AuthService } from "./auth/service/auth.service";
+import {HttpClient} from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from "@angular/forms";
+import {Router} from "@angular/router";
+import {debounceTime} from "rxjs";
+import {environment} from "../environments/environment";
+import {Book} from "../model/Book";
+import {AuthService} from "./auth/auth.service";
+import {OidcSecurityService} from "angular-auth-oidc-client";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.scss' ]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   isNavbarCollapsed = true;
-
+  userRoles: string[] = [];
   searchControl = new FormControl();
   shouldShowSearchResults = false;
   searchedBookName: string = "";
   searchResults: Book[] = [];
-
   public loggedIn: boolean = false;
-  public userProfile: KeycloakProfile = {};
+  public userProfile = {
+    id: "",
+    username: ""
+  };
 
   constructor(
     private router: Router,
     private httpClient: HttpClient,
     public authService: AuthService,
+    public oidcSecurityService: OidcSecurityService,
   ) {
 
   }
@@ -37,19 +40,24 @@ export class AppComponent implements OnInit {
     this.getUser();
   }
 
-  async getUser(){
-    this.loggedIn = await this.authService.isLoggedIn();
-    if (this.loggedIn) {
-      this.userProfile = await this.authService.loadUserProfile();
-    }
+  getUser() {
+    this.oidcSecurityService.isAuthenticated$.subscribe(authenticated => {
+      this.authService.getUserRoles().subscribe(roles => {
+        this.userRoles = roles;
+      });
+      this.authService.getUser().subscribe(user => {
+        this.userProfile = user;
+        this.loggedIn = user.id != "";
+      });
+    });
   }
 
   public login(): void {
-    this.authService.login();
+    this.oidcSecurityService.authorize();
   }
 
   public logout(): void {
-    this.authService.logout();
+    this.oidcSecurityService.logoff().subscribe();
   }
 
   searchFilter(): void {
@@ -64,7 +72,7 @@ export class AppComponent implements OnInit {
   }
 
   onSearchResultClicked(book: Book): void {
-    this.router.navigate([ `/book/${book.id}` ])
+    this.router.navigate([`/book/${book.id}`])
       .then(_ => this.shouldShowSearchResults = false);
   }
 

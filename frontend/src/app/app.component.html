@@ -3,7 +3,8 @@
     <a class="navbar-brand" style="color: #FFFFFF" routerLink="/">
       <img class="navbar-brand-image ms-1" src="/assets/logo/open-reads-low-resolution-logo-color-on-transparent-background.svg" alt="Website logo"/>
     </a>
-    <button class="navbar-toggler hidden-sm-up me-1" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler hidden-sm-up me-1" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false"
+            aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse ms-2" id="navbarsDefault">
@@ -14,17 +15,17 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/shelves" routerLinkActive="activeLink">Shelves</a>
         </li>
-        <li class="nav-item" *ngIf="authService.getRoles().includes('ADMIN')">
+        <li class="nav-item" *ngIf="userRoles.includes('ADMIN')">
           <a class="nav-link" routerLink="/add-book" routerLinkActive="activeLink">Add Book</a>
         </li>
       </ul>
     </div>
     <form>
-      <input [formControl]="searchControl" type="text" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <input [formControl]="searchControl" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
-    <div class="row" class="ms-2 profile">
+    <div class="row ms-2 profile">
       <a class="nav-link hide-name" routerLink="/profile" routerLinkActive="activeLink">
-        {{userProfile.firstName}}
+        {{userProfile.username}}
       </a>
       <div class="simple-row cursor-pointer" *ngIf="!loggedIn" (click)="login()">
         <span class="material-icons me-2">login</span>
@@ -37,7 +38,7 @@
             <span>Logout</span>
           </div>
           <a class="nav-link ms-4" routerLink="/profile" routerLinkActive="activeLink">
-            {{userProfile.firstName}}
+            {{userProfile.username}}
           </a>
         </div>
       </div>
