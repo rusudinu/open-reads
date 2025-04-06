@@ -12,7 +12,7 @@ import org.springframework.ai.chat.ChatClient;
 public class ChatService {
     private final ChatClient chatClient;
     public LlamaResponse generateMessage(ChatDTO promptMessage) {
-        final String llamaMessage = chatClient.call(String.format("Answer this question", promptMessage.getMessage()));
+        final String llamaMessage = chatClient.call(String.format(promptMessage.getMessage()));
         return new LlamaResponse().setMessage(llamaMessage);
     }
 }
