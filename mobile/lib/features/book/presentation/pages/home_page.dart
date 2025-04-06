@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mobile/core/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 import 'package:mobile/features/book/domain/blocs/book_search/book_search_bloc.dart';
 import 'package:mobile/features/book/domain/blocs/book_search/book_search_event.dart';
@@ -19,6 +22,16 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.person),
             onPressed: () {
               // TODO: Navigate to profile
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              final authService = Provider.of<AuthService>(context, listen: false);
+              final success = await authService.logout();
+              if (success && context.mounted) {
+                context.go('/login');
+              }
             },
           ),
         ],
