@@ -75,7 +75,7 @@ The frontend is built with Angular and provides a responsive web interface for a
 
 ## Mobile Application (Flutter)
 
-The project includes a Flutter-based mobile application that provides similar functionality to the web frontend.
+The project includes a Flutter-based mobile application that provides similar functionality to the web frontend. We are using full package imports and the files are organized by feature in folders rather than by type.
 
 ### Architecture
 
