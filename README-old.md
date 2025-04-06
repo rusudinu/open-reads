@@ -81,3 +81,8 @@ After the pull request is merged, the ticket should be closed.
 Local backend swagger [here](http://localhost:8080/swagger-ui/index.html).
 
 [Figma](https://www.figma.com/file/5n6GkvKFhgsmvVssX9WZpM/Open-Reads)
+
+Generate Flutter classes
+```bash
+flutter pub run build_runner build
+```
