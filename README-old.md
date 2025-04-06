@@ -86,3 +86,13 @@ Generate Flutter classes
 ```bash
 flutter pub run build_runner build
 ```
+
+Open tunnel to localhost backend
+```bash
+lt --port 8080
+```
+
+and to keycloak
+```bash
+lt --port 9091
+```

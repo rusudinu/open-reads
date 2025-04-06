@@ -6,7 +6,7 @@ class AuthConfig {
   static const String postLogoutRedirectUrl = 'com.openreads.app://';
   
   static const Map<String, String> discoveryUrls = {
-    'development': 'http://378c-2a02-2f00-3000-ba00-acce-27f9-1f05-32be.ngrok-free.app/realms/open-reads/.well-known/openid-configuration',
+    'development': 'https://few-trams-love.loca.lt/realms/open-reads/.well-known/openid-configuration',
     'staging': 'https://auth-staging.openreads.com/realms/open-reads/.well-known/openid-configuration',
     'production': 'https://auth.openreads.com/realms/open-reads/.well-known/openid-configuration',
   };

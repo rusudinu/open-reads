@@ -9,7 +9,7 @@ class AppConfig {
 
   // API URLs for different environments
   static const Map<Environment, String> _apiBaseUrls = {
-    Environment.development: 'https://ea7a-2a02-2f00-3000-ba00-acce-27f9-1f05-32be.ngrok-free.app',
+    Environment.development: 'https://bitter-rats-report.loca.lt',
     Environment.staging: 'https://staging-api.openreads.com',
     Environment.production: 'https://api.openreads.com',
   };
