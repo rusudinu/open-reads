@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile/features/book/data/models/book.dart';
+import 'package:mobile/features/book/domain/blocs/book_search/book_search_bloc.dart';
+import 'package:mobile/features/book/domain/blocs/book_search/book_search_event.dart';
+import 'package:mobile/features/book/domain/blocs/book_search/book_search_state.dart';
 
-import '../../domain/blocs/book_search/book_search_bloc.dart';
-import '../../domain/blocs/book_search/book_search_event.dart';
-import '../../domain/blocs/book_search/book_search_state.dart';
-import '../../data/models/book.dart';
-import '../widgets/book_card.dart';
+import '../book/widget/book_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

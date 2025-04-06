@@ -1,6 +1,6 @@
-import '../datasources/book_api.dart';
-import '../models/book.dart';
-import '../models/book_status.dart';
+import 'package:mobile/features/book/data/datasources/book_api.dart';
+import 'package:mobile/features/book/data/models/book.dart';
+import 'package:mobile/features/book/data/models/book_status.dart';
 
 class BookRepository {
   final BookApi _bookApi;

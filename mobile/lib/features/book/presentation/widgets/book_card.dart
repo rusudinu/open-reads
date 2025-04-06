@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../../data/models/book.dart';
+import 'package:mobile/features/book/data/models/book.dart';
 
 class BookCard extends StatelessWidget {
   final Book book;

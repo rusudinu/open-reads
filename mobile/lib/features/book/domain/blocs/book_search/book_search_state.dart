@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../../../data/models/book.dart';
+import 'package:mobile/features/book/data/models/book.dart';
 
 abstract class BookSearchState extends Equatable {
   const BookSearchState();

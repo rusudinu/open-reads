@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'core/constants/app_config.dart';
-import 'data/datasources/book_api.dart';
-import 'data/repositories/book_repository.dart';
-import 'domain/blocs/book_search/book_search_bloc.dart';
-import 'presentation/pages/home_page.dart';
+import 'package:mobile/core/constants/app_config.dart';
+import 'package:mobile/core/constants/api_constants.dart';
+import 'package:mobile/features/book/data/datasources/book_api.dart';
+import 'package:mobile/features/book/domain/blocs/book_search/book_search_bloc.dart';
+import 'package:mobile/features/book/domain/repositories/book_repository.dart';
+import 'package:mobile/features/book/presentation/pages/home_page.dart';
 
 void main() {
   // Initialize app configuration
@@ -26,21 +26,11 @@ class OpenReadsApp extends StatelessWidget {
       providers: [
         // Core services
         Provider<Dio>(
-          create: (context) => Dio()
-            ..options.connectTimeout = Duration(milliseconds: AppConfig.connectionTimeout)
-            ..options.receiveTimeout = Duration(milliseconds: AppConfig.receiveTimeout)
-            ..interceptors.add(
-              InterceptorsWrapper(
-                onRequest: (options, handler) {
-                  // Add auth token here if needed
-                  return handler.next(options);
-                },
-                onError: (DioException e, handler) {
-                  // Handle common errors here
-                  return handler.next(e);
-                },
-              ),
-            ),
+          create: (context) => Dio(BaseOptions(
+            baseUrl: ApiConstants.baseUrl,
+            connectTimeout: const Duration(seconds: 5),
+            receiveTimeout: const Duration(seconds: 3),
+          )),
         ),
         
         // Data sources

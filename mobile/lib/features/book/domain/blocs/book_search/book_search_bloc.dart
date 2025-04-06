@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/repositories/book_repository.dart';
+import 'package:mobile/features/book/domain/repositories/book_repository.dart';
 import 'book_search_event.dart';
 import 'book_search_state.dart';
 

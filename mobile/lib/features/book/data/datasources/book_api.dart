@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
-import '../../core/constants/api_constants.dart';
-import '../models/book.dart';
-import '../models/book_status.dart';
+import 'package:mobile/core/constants/api_constants.dart';
+import 'package:mobile/features/book/data/models/book.dart';
+import 'package:mobile/features/book/data/models/book_status.dart';
+import 'dart:convert';
 
 class BookApi {
   final Dio _dio;
@@ -10,10 +11,30 @@ class BookApi {
 
   Future<List<Book>> searchBooks(String keyword) async {
     try {
+      if (keyword.isEmpty) {
+        return [];
+      }
+      
       final response = await _dio.get(ApiConstants.searchBooks(keyword));
+      print("Response: ${response.data} ${response.statusCode}");
       if (response.statusCode == 200) {
-        final List<dynamic> data = response.data;
-        return data.map((json) => Book.fromJson(json)).toList();
+        if (response.data is String) {
+          try {
+            final dynamic decoded = json.decode(response.data as String);
+            if (decoded is List) {
+              return decoded.map((json) => Book.fromJson(json)).toList();
+            } else {
+              return [];
+            }
+          } catch (e) {
+            return [];
+          }
+        } else if (response.data is List) {
+          final List<dynamic> data = response.data;
+          return data.map((json) => Book.fromJson(json)).toList();
+        } else {
+          return [];
+        }
       } else {
         throw Exception('Failed to search books');
       }
