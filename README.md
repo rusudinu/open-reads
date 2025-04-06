@@ -1,89 +1,158 @@
 # Open Reads
 
-Open-Source GoodReads clone, with a cleaner UI, book search, friends feed that will show what your friends are reading, personal shelves (currently reading, read, want to read), rating and review functionality.
+Open Reads is an open-source GoodReads clone that provides a modern platform for tracking reading progress, discovering new books, and connecting with other readers. It features a clean UI, book search, friends feed, personalized shelves, and rating/review functionality.
 
-## Team Members
+## System Architecture
 
-Mîș Emilia-Oana (email: emilia_oana.mis@stud.fils.upb.ro)
+The project follows a multi-tier architecture with:
 
-Rusu Dinu-Ștefan (email: dinu_stefan.rusu@stud.fils.upb.ro)
+1. **Backend**: Spring Boot Java application
+2. **Frontend**: Angular-based web application
+3. **Mobile**: Flutter-based mobile application
 
-## URLs
+## Backend (Spring Boot)
 
-The FE is deployed here: https://openreads.codingshadows.com/, but will access the backend hosted on localhost.
+The backend is built using Spring Boot and provides RESTful APIs for all application functionality. It uses JWT authentication through KeyCloak integration.
 
-## Screenshots
-![Home screenshot](/screenshots/home.png?raw=true)
-![Add book screenshot](/screenshots/add-book.png?raw=true)
-![User profile screenshot](/screenshots/profile.png?raw=true)
-![Shelves screenshot](/screenshots/shelves.png?raw=true)
+### API Endpoints
 
-### Stories
+#### Book Controller (`/book`)
+- `GET /book/{id}` - Retrieve a specific book by ID
+- `GET /book/search/{keyword}` - Search for books by keyword
+- `POST /book` - Save a new book
+- `GET /book/recommended` - Get book recommendations for the current user
+- `PUT /book/mark-as-reading/{bookId}` - Mark a book as "currently reading" 
+- `PUT /book/mark-as-read/{bookId}` - Mark a book as "read"
+- `PUT /book/mark-as-want-to-read/{bookId}` - Mark a book as "want to read"
+- `GET /book/status/{bookId}` - Get the status of a book for the current user
 
-1. As a user, I want to be able to search for books by title, author, genre, etc.
-2. For each book, I want to be able to add it to different shelves. The books that I want to read should be added to the “Want to Read” shelf, the books that I am currently reading should be added to the “Currently Reading” shelf, and the books that I have already read should be added to the “Read” shelf.
-3. As a user, I should be able to rate each book with a score ranging from 1 to 5 stars.
-4. As a user, I want to be able to see the books that I have read, the books that I am currently reading, and the books that I want to read, so that I can keep track of my reading progress, on a profile page.
-5. As a user, I want to be able to see what my friends are reading, and what books are on the same topic that they are currently reading, so that I can find new books to read.
-6. I would also like to see recommended books based on the topics that I am interested in.
+#### User Profile Controller (`/profile`)
+- `GET /profile/me` - Get the current user's profile
+- `GET /profile/{username}` - Get a specific user's profile
+- `POST /profile` - Save a user profile
+- `PUT /profile/description` - Update the current user's profile description
+- `PUT /profile/add-friend/{username}` - Add a friend
+- `GET /profile/friends` - Get the current user's friends list
 
-## Guidelines
-To authenticate just open [localhost:8080](localhost:8080).
+#### Rating Controller (`/rating`)
+- `GET /rating/{bookId}` - Get the average rating for a book
+- `GET /rating/me/{bookId}` - Get the current user's rating for a book
+- `PUT /rating/{bookId}/{rating}` - Rate a book
 
-For OIDC_USER role just use demo, demo, for OIDC_ADMIN just use rusu, rusu.
+#### Feed Controller (`/feed`)
+- `GET /feed` - Get the activity feed (showing friends' reading activity)
 
-### Branches
+### Technology Stack
+- Java with Spring Boot
+- Spring Security with OAuth2/OIDC
+- JPA/Hibernate for persistence
+- RESTful API design
 
-The branch management and deployment process objectives are:
+## Frontend (Angular)
 
-* allow multiple teams to work in parallel, with minimal friction
-* deploy implemented features as soon as possible
-* have a clear image at all times of what is latest common code, and what is deployed in production
+The frontend is built with Angular and provides a responsive web interface for all application features.
 
-There will be 4 type of branches:
+### Core Components
+- **Home** - Shows recommended books and activity feed
+- **Profile** - User profile management and friend connections
+- **Book** - Book details and actions (rating, shelving)
+- **Shelves** - Manage book collections (Read, Currently Reading, Want to Read)
+- **Add Book** - Interface for adding new books
 
-* master
-  * the master branch serves as a merging place for all feature branches
-  * all feature branches will be started from the master branch
-* release
-  * this branch is the only one from which PROD deployments are made
-  * commits are brought into the release branch in two ways:
-    * preferably, all changes from master are brought into the release branch for an upcoming release; this is done by merging the master branch into release
-    * when not all changes should be merged, the relevant commits should be cherry-picked into the release branch
-* feature
-  * all new features start from current master branch
-  * every story is developed in one or more feature branches, but never on master
-  * before merging, all commits should be squashed into one, to make cherry-picking easy, and the branch structure easier to read
-* hotfix
-  * hotfix branches are created from the release branch
-  * hotfix branches are merged into the release branch and master branch
+### Services
+- **BookService** - Handles book-related API calls
+- **ProfileService** - Manages user profile operations
+- **HomeService** - Retrieves feed data
+- **AuthService** - Handles authentication with KeyCloak
 
-### Branch naming
+### Technology Stack
+- Angular
+- TypeScript
+- Angular Material UI components
+- NgBootstrap for UI elements
+- RxJS for reactive programming
+- KeyCloak integration for authentication
 
-Feature branches should be named ***feature/$ticket-id-ticket-name***.
+## Mobile Application (Flutter)
 
-Hotfix branches should be named ***hotfix/$ticket-id-ticket-name***.
+The project includes a Flutter-based mobile application that provides similar functionality to the web frontend.
 
-### Commit messages
+### Architecture
 
-Each commit message should start with the ticket id, followed by a short description of the changes.
+The mobile app follows a clean architecture approach with:
 
-## Pull requests
+#### State Management
+- **BLoC (Business Logic Component)** pattern for separation of UI and business logic
+- **Provider** for dependency injection and state management across the widget tree
 
-### Pull request naming
+#### Layered Structure
+- **Presentation Layer** - Flutter widgets and screens that consume BLoCs
+- **Business Logic Layer** - BLoCs that handle state transformations and business logic
+- **Data Layer** - Repositories and data sources
 
-Pull requests should be named ***$ticket-id-ticket-name*** and merged into master.
+#### Key Components
+- **Repositories** - Abstraction layer between data sources and BLoCs
+  - `BookRepository` - Handles book-related operations
+  - `UserRepository` - Manages user profile and authentication
+  - `ShelfRepository` - Manages book shelves
+  - `RatingRepository` - Handles book rating operations
+  
+- **BLoCs**
+  - `BookBloc` - Manages book search, details, and recommendations
+  - `AuthBloc` - Handles authentication state
+  - `ProfileBloc` - Manages user profile data
+  - `ShelfBloc` - Handles shelf operations (adding books, changing shelf status)
+  - `FeedBloc` - Manages the social feed
 
-### Pull request description
+- **Models** - Data classes representing domain entities
+  - `Book` - Book details
+  - `User` - User profile
+  - `Rating` - Book ratings
+  - `Shelf` - Reading shelves
+  - `FeedEntry` - Activity feed items
 
-Each pull request should have a description that contains a brief description of the changes.
+#### Data Flow
+1. UI events trigger BLoC events
+2. BLoCs process events and call repositories
+3. Repositories fetch data from API or local storage
+4. Repositories return data to BLoCs
+5. BLoCs emit new states
+6. UI rebuilds based on new states
 
-Each pull request must be reviewed by at least one other team member in order for it to be merged. The reviewer should check that the code is clean, that the tests pass, and that the changes are consistent with the ticket description and fulfill the acceptance criteria.
+### Technology Stack
+- Flutter
+- Dart
+- flutter_bloc for BLoC implementation
+- provider for dependency injection
+- dio for HTTP requests
+- shared_preferences for local storage
+- json_serializable for model serialization
 
-After the pull request is merged, the ticket should be closed.
+## Authentication
 
-## Useful Links
+Authentication is implemented using KeyCloak, providing:
+- OAuth2/OIDC compliant authentication
+- Role-based access control
+- JWT token-based security
 
-Local backend swagger [here](http://localhost:8080/swagger-ui/index.html).
+## Development Setup
 
-[Figma](https://www.figma.com/file/5n6GkvKFhgsmvVssX9WZpM/Open-Reads)
+### Backend
+```bash
+cd backend
+./gradlew bootRun
+```
+
+### Frontend
+```bash
+cd frontend
+npm install
+ng serve
+```
+
+### Mobile
+```bash
+cd mobile
+flutter pub get
+flutter run
+```
