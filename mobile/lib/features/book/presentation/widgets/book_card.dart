@@ -30,7 +30,7 @@ class BookCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(4.0),
                 child: CachedNetworkImage(
-                  imageUrl: book.coverUrl,
+                  imageUrl: book.coverUrl ?? "",
                   width: 80,
                   height: 120,
                   fit: BoxFit.cover,
@@ -53,7 +53,7 @@ class BookCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      book.title,
+                      book.title ?? "",
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -62,7 +62,7 @@ class BookCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4.0),
                     Text(
-                      book.author,
+                      book.author ?? "",
                       style: Theme.of(context).textTheme.bodyMedium,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -90,7 +90,7 @@ class BookCard extends StatelessWidget {
                     Wrap(
                       spacing: 4.0,
                       runSpacing: 4.0,
-                      children: book.categories
+                      children: (book.categories ?? [])
                           .take(2)
                           .map((category) => Chip(
                                 label: Text(

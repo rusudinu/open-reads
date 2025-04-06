@@ -12,7 +12,7 @@ class ApiConstants {
   static const String feedEndpoint = '/feed';
   
   // Full API Routes
-  static String searchBooks(String keyword) => '$baseUrl$bookEndpoint$searchEndpoint/$keyword';
+  static String searchBooks(String keyword) => '$baseUrl$bookEndpoint$searchEndpoint/${keyword ?? ""}';
   static String getBook(int id) => '$baseUrl$bookEndpoint/$id';
   static String getRecommendedBooks() => '$baseUrl$bookEndpoint/recommended';
   static String getBookStatus(int bookId) => '$baseUrl$bookEndpoint/status/$bookId';

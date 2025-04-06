@@ -31,7 +31,16 @@ class BookApi {
           }
         } else if (response.data is List) {
           final List<dynamic> data = response.data;
-          return data.map((json) => Book.fromJson(json)).toList();
+          final List<Book> books = [];
+          for (var item in data) {
+            try {
+              books.add(Book.fromJson(item));
+            } catch (e) {
+              print('Error parsing book: $e');
+              // Skip this book if it can't be parsed
+            }
+          }
+          return books;
         } else {
           return [];
         }
@@ -47,7 +56,12 @@ class BookApi {
     try {
       final response = await _dio.get(ApiConstants.getBook(id));
       if (response.statusCode == 200) {
-        return Book.fromJson(response.data);
+        try {
+          return Book.fromJson(response.data);
+        } catch (e) {
+          print('Error parsing book details: $e');
+          throw Exception('Failed to parse book data: $e');
+        }
       } else {
         throw Exception('Failed to get book');
       }
@@ -61,7 +75,16 @@ class BookApi {
       final response = await _dio.get(ApiConstants.getRecommendedBooks());
       if (response.statusCode == 200) {
         final List<dynamic> data = response.data;
-        return data.map((json) => Book.fromJson(json)).toList();
+        final List<Book> books = [];
+        for (var item in data) {
+          try {
+            books.add(Book.fromJson(item));
+          } catch (e) {
+            print('Error parsing recommended book: $e');
+            // Skip this book if it can't be parsed
+          }
+        }
+        return books;
       } else {
         throw Exception('Failed to get recommended books');
       }

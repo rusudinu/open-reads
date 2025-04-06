@@ -6,27 +6,33 @@ part 'book.g.dart';
 @JsonSerializable()
 class Book extends Equatable {
   final int id;
-  final String title;
-  final String author;
-  final String description;
-  final String coverUrl;
-  final List<String> categories;
+  @JsonKey(name: 'name')
+  final String? title;
+  final String? author;
+  final String? description;
+  @JsonKey(name: 'coverImageURL')
+  final String? coverUrl;
+  @JsonKey(name: 'genre')
+  final String? genre;
+  @JsonKey(defaultValue: 0.0)
   final double averageRating;
 
   const Book({
     required this.id,
-    required this.title,
-    required this.author,
-    required this.description,
-    required this.coverUrl,
-    required this.categories,
+    this.title = '',
+    this.author = '',
+    this.description = '',
+    this.coverUrl = '',
+    this.genre = '',
     this.averageRating = 0.0,
   });
+
+  List<String> get categories => genre != null ? [genre!] : [];
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
 
   Map<String, dynamic> toJson() => _$BookToJson(this);
 
   @override
-  List<Object?> get props => [id, title, author, description, coverUrl, categories, averageRating];
+  List<Object?> get props => [id, title, author, description, coverUrl, genre, averageRating];
 } 
